@@ -11,17 +11,16 @@
 }
 
 .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #9DC36B;
-    text-align: center;
-    margin-bottom: 30px;
-    text-shadow: 
-      1px 1px 0 #E8E8E8,
-      0 0 5px #9DC36B,
-      0 0 5px #9DC36B;
-    animation: glow 1.5s infinite alternate;
-  }
+  font-size: 28px;
+  color: #9DC36B;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 
+    1px 1px 0 #E8E8E8,
+    0 0 5px #9DC36B,
+    0 0 5px #9DC36B;
+  animation: glow 1.5s infinite alternate;
+}
 
 .mainNav, .secondaryNav {
   display: flex;
@@ -33,10 +32,6 @@
 
 .mainNav {
   margin-bottom: auto;
-
-  .navLink:first-child {
-    color: #FF9B7B;
-  }
 }
 
 .navLink {
@@ -53,8 +48,12 @@
     color: #9DC36B;
   }
 
+  &.hover::after{
+    color: #698a3d;
+  }
+
   &.active {
-    color: #9DC36B;
+    color: #FF9B7B;
   }
 }
 
@@ -63,4 +62,19 @@
   padding-top: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 
+      1px 1px 0 #E8E8E8,
+      0 0 5px #9DC36B,
+      0 0 5px #9DC36B;
+  }
+  to {
+    text-shadow: 
+      1px 1px 0 #E8E8E8,
+      0 0 10px #9DC36B,
+      0 0 15px #9DC36B;
+  }
 }

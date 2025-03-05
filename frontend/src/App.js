@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import SideBar from './components/SideBar/SideBar';
 import './App.css';
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
 
   return (
     <div className="app">
-      <SideBar />
       <main className="main-content">
         {/* Здесь будет основной контент */}
       </main>
