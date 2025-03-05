@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import SideBar from './components/SideBar/SideBar';
 import './App.css';
 
 function App() {
+  const location = useLocation();
+  const isAuthPage = ['/login', '/register', '/reset-password'].includes(location.pathname);
+
+  if (isAuthPage) {
+    return null; // Не показываем сайдбар на страницах авторизации
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <SideBar />
+      <main className="main-content">
+        {/* Здесь будет основной контент */}
+      </main>
     </div>
   );
 }
