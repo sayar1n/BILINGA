@@ -48,20 +48,12 @@
     color: #9DC36B;
   }
 
-  &:active {
+  &.hover::after{
     color: #698a3d;
   }
   
   &.active {
     color: #FF9B7B;
-    
-    &:hover {
-      color: #ff7f57;
-    }
-    
-    &:active {
-      color: #ff6433;
-    }
   }
 }
 

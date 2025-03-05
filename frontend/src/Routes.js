@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import SideBar from './components/SideBar/SideBar';
+import SideBarSet from './components/SidebarSet/SideBar';
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/sidebar" element={<SideBar />} />
+        <Route path="/settings" element={<SideBarSet />} />
       </Routes>
     </Router>
   );
