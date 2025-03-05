@@ -6,7 +6,8 @@ import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import SideBar from './components/SideBar/SideBar';
 import SideBarSet from './components/SidebarSet/SideBar';
-
+import Header from './components/Header/Header';
+ 
 const AppRoutes = () => {
   return (
     <Router>
@@ -17,6 +18,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/sidebar" element={<SideBar />} />
         <Route path="/settings" element={<SideBarSet />} />
+        <Route path="/header" element={<Header />} />
       </Routes>
     </Router>
   );
