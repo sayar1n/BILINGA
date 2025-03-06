@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './SideBar.module.scss';
 
-
 const SideBar = () => {
+  const [showGameSubmenu, setShowGameSubmenu] = useState(false);
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>BILINGA</div>
@@ -11,10 +12,40 @@ const SideBar = () => {
       {/* Основная навигация */}
       <nav className={styles.mainNav}>
         <NavLink to="/" className={styles.navLink}>Главная</NavLink>
-        <NavLink to="/games" className={styles.navLink}>Игры</NavLink>
-        <NavLink to="/materials" className={styles.navLink}>Материалы</NavLink>
-        <NavLink to="/notes" className={styles.navLink}>Заметки</NavLink>
-        <NavLink to="/dictionary" className={styles.navLink}>Словари</NavLink>
+        
+        {/* Игры с подменю */}
+        <div 
+          className={styles.navItemWithSubmenu}
+          onMouseEnter={() => setShowGameSubmenu(true)}
+          onMouseLeave={() => setShowGameSubmenu(false)}
+        >
+          <NavLink to="/games" className={styles.navLink}>Игры</NavLink>
+          {showGameSubmenu && (
+            <div className={styles.submenu}>
+              <NavLink to="/games/solo" className={styles.submenuLink}>Соло</NavLink>
+              <NavLink to="/games/duo" className={styles.submenuLink}>Дуо(Бот)</NavLink>
+            </div>
+          )}
+        </div>
+
+        <NavLink 
+          to="/materials" 
+          className={`${styles.navLink} ${showGameSubmenu ? styles.firstShifted : ''}`}
+        >
+          Материалы
+        </NavLink>
+        <NavLink 
+          to="/notes" 
+          className={`${styles.navLink} ${showGameSubmenu ? styles.nextShifted : ''}`}
+        >
+          Заметки
+        </NavLink>
+        <NavLink 
+          to="/dictionary" 
+          className={`${styles.navLink} ${showGameSubmenu ? styles.nextShifted : ''}`}
+        >
+          Словари
+        </NavLink>
       </nav>
 
       {/* Дополнительная навигация */}

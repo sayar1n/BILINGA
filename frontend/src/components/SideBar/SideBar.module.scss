@@ -33,6 +33,19 @@
 
 .mainNav {
   margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: gap 0.2s ease;
+
+  &:has(.navItemWithSubmenu:hover) {
+    gap: 10px;
+  }
+}
+
+.navItemWithSubmenu {
+  position: relative;
+  width: 120px;
 }
 
 .navLink {
@@ -43,7 +56,7 @@
   font-size: 16px;
   padding: 8px 15px;
   width: 120px;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
 
   &:hover {
     color: #9DC36B;
@@ -63,6 +76,37 @@
     &:active {
       color: #ff6433;
     }
+  }
+}
+
+.submenu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: white;
+  padding: 8px 0;
+  min-width: 120px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.submenuLink {
+  display: block;
+  text-decoration: none;
+  color: #222222;
+  padding: 8px 15px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-align: left;
+
+  &:hover {
+    color: #9DC36B;
+  }
+
+  &.active {
+    color: #FF9B7B;
   }
 }
 
@@ -86,4 +130,16 @@
       0 0 10px #9DC36B,
       0 0 15px #9DC36B;
   }
+}
+
+.shifted {
+  margin-top: 70px;
+}
+
+.firstShifted {
+  margin-top: 70px;
+}
+
+.nextShifted {
+  margin-top: 10px;
 }
