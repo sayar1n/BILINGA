@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import GameCard from '../GameCard/GameCard';
 import styles from './GameSlider.module.scss';
 
-const GameSlider = ({ title, games }) => {
+const GameSlider = ({ title, games, onItemSelect }) => {
   const [startIndex, setStartIndex] = useState(0);
   const cardsToShow = 5;
 
@@ -14,11 +14,15 @@ const GameSlider = ({ title, games }) => {
     setStartIndex(Math.min(games.length - cardsToShow, startIndex + 1));
   };
 
+  const handleCardClick = (game) => {
+    onItemSelect && onItemSelect(game, game.type);
+  };
+
   return (
     <div className={styles.sliderContainer}>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.slider}>
-        <button 
+        <button
           className={`${styles.navButton} ${styles.prevButton}`}
           onClick={handlePrev}
           disabled={startIndex === 0}
@@ -27,15 +31,20 @@ const GameSlider = ({ title, games }) => {
         </button>
         <div className={styles.cardsContainer}>
           {games.slice(startIndex, startIndex + cardsToShow).map((game) => (
-            <GameCard
+            <div 
               key={game.id}
-              title={game.title}
-              author={game.author}
-              image={game.image}
-            />
+              onClick={() => handleCardClick(game)}
+              style={{ cursor: 'pointer' }}
+            >
+              <GameCard
+                title={game.title}
+                author={game.author}
+                image={game.image}
+              />
+            </div>
           ))}
         </div>
-        <button 
+        <button
           className={`${styles.navButton} ${styles.nextButton}`}
           onClick={handleNext}
           disabled={startIndex >= games.length - cardsToShow}

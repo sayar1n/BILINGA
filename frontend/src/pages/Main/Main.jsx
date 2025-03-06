@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import Tags from '../../components/Tags/Tags';
 import GameSlider from '../../components/GameSlider/GameSlider';
 import { gamesData } from '../../data/games/games';
@@ -6,6 +7,8 @@ import { materialsData } from '../../data/materials/matireals';
 import styles from './Main.module.scss';
 
 const Main = () => {
+  const { onItemSelect } = useOutletContext();
+
   const [currentFilter, setCurrentFilter] = useState({ 
     type: 'category', 
     value: 'Все',
@@ -89,18 +92,31 @@ const Main = () => {
       {currentFilter.type === 'material' ? (
         <GameSlider 
           title={`Материалы ${currentFilter.value}`} 
-          games={filteredContent.materials} 
+          games={filteredContent.materials}
+          onItemSelect={onItemSelect}
         />
       ) : (
         <>
           {filteredContent.solo?.length > 0 && (
-            <GameSlider title="Соло" games={filteredContent.solo} />
+            <GameSlider 
+              title="Соло" 
+              games={filteredContent.solo}
+              onItemSelect={onItemSelect}
+            />
           )}
           {filteredContent.duo?.length > 0 && (
-            <GameSlider title="Дуо(Бот)" games={filteredContent.duo} />
+            <GameSlider 
+              title="Дуо(Бот)" 
+              games={filteredContent.duo}
+              onItemSelect={onItemSelect}
+            />
           )}
           {filteredContent.materials?.length > 0 && (
-            <GameSlider title="Материалы" games={filteredContent.materials} />
+            <GameSlider 
+              title="Материалы" 
+              games={filteredContent.materials}
+              onItemSelect={onItemSelect}
+            />
           )}
         </>
       )}

@@ -75,7 +75,6 @@ const Tags = ({ onFilterChange }) => {
           />
         ))}
       </div>
-      <h1 className={styles.mainTitle}>Игры</h1>
       {showLevels && (
         <div className={styles.levels}>
           {materialsData.levels.map((level) => (

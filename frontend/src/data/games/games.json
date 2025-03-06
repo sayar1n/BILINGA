@@ -14,7 +14,9 @@
       "author": "Space Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "A1"
+      "level": "A1",
+      "description": "Исследуйте космос и учите английский язык в увлекательном путешествии по галактике. Идеально для начинающих изучать язык.",
+      "type": "games"
     },
     {
       "id": 2,
@@ -22,7 +24,9 @@
       "author": "Forest Studio",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "A2"
+      "level": "A2",
+      "description": "Разгадывайте загадки волшебного леса, изучая новые слова и грамматику. Подходит для базового уровня английского.",
+      "type": "games"
     },
     {
       "id": 3,
@@ -30,7 +34,9 @@
       "author": "Dragon Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "B1"
+      "level": "B1",
+      "description": "Погрузитесь в мир фэнтези, где каждое заклинание - это новая фраза на английском. Для тех, кто уже освоил базовый уровень.",
+      "type": "games"
     },
     {
       "id": 4,
@@ -38,7 +44,9 @@
       "author": "Sea Adventures",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "B2"
+      "level": "B2",
+      "description": "Станьте капитаном корабля и изучайте английский в морских приключениях. Включает сложные диалоги и морской сленг.",
+      "type": "games"
     },
     {
       "id": 5,
@@ -46,7 +54,9 @@
       "author": "Ancient Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "C1"
+      "level": "C1",
+      "description": "Исследуйте древние пирамиды, решая сложные головоломки на английском. Для продвинутого уровня владения языком.",
+      "type": "games"
     },
     {
       "id": 6,
@@ -54,7 +64,9 @@
       "author": "Eastern Tales",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "C2"
+      "level": "C2",
+      "description": "Постигните путь самурая через изучение сложных языковых конструкций. Для тех, кто стремится к совершенству в английском.",
+      "type": "games"
     },
     {
       "id": 7,
@@ -62,7 +74,9 @@
       "author": "Galaxy Studio",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "A1"
+      "level": "A1",
+      "description": "Начните своё путешествие по галактике английского языка. Простые задания для новичков в игровой форме.",
+      "type": "games"
     },
     {
       "id": 8,
@@ -70,7 +84,9 @@
       "author": "Magic Woods",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "A2"
+      "level": "A2",
+      "description": "Волшебное приключение с базовыми диалогами и словарным запасом. Идеально для начинающих магов английского.",
+      "type": "games"
     },
     {
       "id": 9,
@@ -78,7 +94,9 @@
       "author": "Ocean Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "B1"
+      "level": "B1",
+      "description": "Исследуйте подводный мир, совершенствуя свой английский. Средний уровень сложности с морской тематикой.",
+      "type": "games"
     },
     {
       "id": 10,
@@ -86,17 +104,21 @@
       "author": "Sky Castle",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "B2"
+      "level": "B2",
+      "description": "Покорите воздушную крепость, улучшая свои знания английского. Увлекательные задания среднего уровня.",
+      "type": "games"
     }
   ],
   "duo": [
     {
       "id": 1,
       "title": "Битва титанов",
-      "author": "Battle Studio",
+      "author": "Battle Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "A1"
+      "level": "A1",
+      "description": "Сразитесь с ботом в эпической битве, где каждый правильный ответ приближает вас к победе. Отличный способ практиковать базовый английский.",
+      "type": "games"
     },
     {
       "id": 2,
@@ -104,7 +126,9 @@
       "author": "Racing Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "A2"
+      "level": "A2",
+      "description": "Соревнуйтесь с ботом в космических гонках, где скорость реакции так же важна, как и знание английского. Базовый уровень.",
+      "type": "games"
     },
     {
       "id": 3,
@@ -112,7 +136,9 @@
       "author": "Strategy Masters",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "B1"
+      "level": "B1",
+      "description": "Стратегическая игра, где каждый ход требует знания английского языка. Развивает тактическое мышление и языковые навыки.",
+      "type": "games"
     },
     {
       "id": 4,
@@ -120,7 +146,9 @@
       "author": "Naval Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "B2"
+      "level": "B2",
+      "description": "Классическая игра с современным языковым твистом. Практикуйте английский в морских сражениях.",
+      "type": "games"
     },
     {
       "id": 5,
@@ -128,7 +156,9 @@
       "author": "Magic Studio",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "C1"
+      "level": "C1",
+      "description": "Магические поединки с использованием сложной английской лексики. Для опытных волшебников языка.",
+      "type": "games"
     },
     {
       "id": 6,
@@ -136,7 +166,9 @@
       "author": "War Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "C2"
+      "level": "C2",
+      "description": "Командуйте танком, используя продвинутый военный словарь. Для экспертов английского языка.",
+      "type": "games"
     },
     {
       "id": 7,
@@ -144,7 +176,9 @@
       "author": "Tech Studio",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "A1"
+      "level": "A1",
+      "description": "Сражайтесь с роботами, используя простые английские команды. Отличный старт для новичков.",
+      "type": "games"
     },
     {
       "id": 8,
@@ -152,7 +186,9 @@
       "author": "Space Strategy",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "A2"
+      "level": "A2",
+      "description": "Постройте свою космическую империю, изучая базовую лексику и грамматику английского языка.",
+      "type": "games"
     },
     {
       "id": 9,
@@ -160,7 +196,9 @@
       "author": "Medieval Games",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "B1"
+      "level": "B1",
+      "description": "Средневековые поединки с ботом помогут улучшить разговорный английский среднего уровня.",
+      "type": "games"
     },
     {
       "id": 10,
@@ -168,7 +206,9 @@
       "author": "Sky Battles",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Дуо(Бот)", "Игры(Все)"],
-      "level": "B2"
+      "level": "B2",
+      "description": "Воздушные бои с использованием английской авиационной терминологии. Для уверенных пользователей языка.",
+      "type": "games"
     }
   ]
 }
