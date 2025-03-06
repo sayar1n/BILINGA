@@ -1,0 +1,88 @@
+.tagsContainer {
+  margin-bottom: 24px;
+}
+
+.mainTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 8px 16px;
+  background-color: #E8F5D8;
+  border: none;
+  border-radius: 20px;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    background-color: #D3EBB3;
+  }
+
+  &.active {
+    background-color: #9DC36B;
+    color: white;
+  }
+}
+
+.label {
+  cursor: pointer;
+}
+
+.arrow {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 4px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+  }
+
+  &.expanded {
+    transform: rotate(180deg);
+  }
+}
+
+.levels {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-left: 24px;
+}
+
+.levelTag {
+  padding: 6px 12px;
+  background-color: #F0F7E6;
+  border: none;
+  border-radius: 16px;
+  color: #333;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #D3EBB3;
+  }
+
+  &.active {
+    background-color: #9DC36B;
+    color: white;
+  }
+}
