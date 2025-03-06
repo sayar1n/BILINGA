@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Tag from './Tag';
 import styles from './Tags.module.scss';
-import { gamesData } from '../../data/games';
+import { gamesData } from '../../data/games/games';
+import { materialsData } from '../../data/materials/matireals';
 
 const Tags = ({ onFilterChange }) => {
   const [activeTag, setActiveTag] = useState('Все');
   const [showLevels, setShowLevels] = useState(false);
   const [activeLevel, setActiveLevel] = useState(null);
+  const [currentCategory, setCurrentCategory] = useState(null);
 
   const handleTagClick = (tag) => {
     setActiveTag(tag);
@@ -17,17 +19,30 @@ const Tags = ({ onFilterChange }) => {
     } else {
       setShowLevels(false);
       setActiveLevel(null);
-      onFilterChange && onFilterChange({ type: 'category', value: tag });
+      onFilterChange && onFilterChange({ 
+        type: 'category', 
+        value: tag,
+        level: null 
+      });
     }
   };
 
-  const handleExpandClick = () => {
-    setShowLevels(!showLevels);
+  const handleExpandClick = (category) => {
+    setCurrentCategory(category);
+    setShowLevels(prev => !prev);
   };
 
   const handleLevelClick = (level) => {
     setActiveLevel(level);
-    onFilterChange && onFilterChange({ type: 'material', value: level });
+    if (currentCategory === 'Материалы') {
+      onFilterChange && onFilterChange({ type: 'material', value: level });
+    } else {
+      onFilterChange && onFilterChange({ 
+        type: 'category', 
+        value: currentCategory,
+        level: level 
+      });
+    }
   };
 
   return (
@@ -40,15 +55,15 @@ const Tags = ({ onFilterChange }) => {
             label={tag}
             active={activeTag === tag}
             onClick={() => handleTagClick(tag)}
-            isExpandable={tag === 'Материалы'}
-            expanded={showLevels}
-            onExpandClick={tag === 'Материалы' ? handleExpandClick : undefined}
+            isExpandable={true}
+            expanded={showLevels && currentCategory === tag}
+            onExpandClick={() => handleExpandClick(tag)}
           />
         ))}
       </div>
       {showLevels && (
         <div className={styles.levels}>
-          {gamesData.materials.levels.map((level) => (
+          {materialsData.levels.map((level) => (
             <button
               key={level}
               className={`${styles.levelTag} ${activeLevel === level ? styles.active : ''}`}

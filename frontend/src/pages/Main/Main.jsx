@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import Tags from '../../components/Tags/Tags';
 import GameSlider from '../../components/GameSlider/GameSlider';
-import { gamesData } from '../../data/games';
+import { gamesData } from '../../data/games/games';
+import { materialsData } from '../../data/materials/matireals';
 import styles from './Main.module.scss';
 
 const Main = () => {
-  const [currentFilter, setCurrentFilter] = useState({ type: 'category', value: 'Все' });
+  const [currentFilter, setCurrentFilter] = useState({ 
+    type: 'category', 
+    value: 'Все',
+    level: null 
+  });
 
   const handleFilterChange = (filter) => {
     setCurrentFilter(filter);
@@ -13,44 +18,65 @@ const Main = () => {
 
   const getFilteredContent = () => {
     if (currentFilter.type === 'material') {
-      if (currentFilter.value === 'all') {
-        // Собираем все материалы из всех уровней
-        const allMaterials = Object.values(gamesData.materials.content)
-          .flat()
-          .map(material => ({ ...material }));
+      if (currentFilter.value === 'все') {
         return {
-          materials: allMaterials
+          materials: materialsData.content,
+          solo: [],
+          duo: []
         };
       }
       return {
-        materials: gamesData.materials.content[currentFilter.value] || []
+        materials: materialsData.content.filter(material => material.level === currentFilter.value),
+        solo: [],
+        duo: []
       };
     }
 
-    const allGames = {
-      solo: [...gamesData.solo],
-      duo: [...gamesData.duo]
+    const filterByLevel = (games) => {
+      if (!currentFilter.level) return games;
+      return games.filter(game => game.level === currentFilter.level);
     };
 
     switch (currentFilter.value) {
       case 'Все':
-        return allGames;
+        return {
+          solo: filterByLevel(gamesData.solo),
+          duo: filterByLevel(gamesData.duo),
+          materials: currentFilter.level ? 
+            materialsData.content.filter(material => material.level === currentFilter.level) :
+            materialsData.content
+        };
       case 'Игры(Все)':
-        return allGames;
+        return {
+          solo: filterByLevel(gamesData.solo),
+          duo: filterByLevel(gamesData.duo),
+          materials: []
+        };
       case 'Соло':
         return {
-          solo: gamesData.solo,
-          duo: []
+          solo: filterByLevel(gamesData.solo),
+          duo: [],
+          materials: []
         };
       case 'Дуо(Бот)':
         return {
           solo: [],
-          duo: gamesData.duo
+          duo: filterByLevel(gamesData.duo),
+          materials: []
+        };
+      case 'Материалы':
+        return {
+          solo: [],
+          duo: [],
+          materials: currentFilter.level ? 
+            materialsData.content.filter(material => material.level === currentFilter.level) :
+            materialsData.content
         };
       default:
         return {
-          solo: gamesData.solo.filter(game => game.tags.includes(currentFilter.value)),
-          duo: gamesData.duo.filter(game => game.tags.includes(currentFilter.value))
+          solo: filterByLevel(gamesData.solo.filter(game => game.tags.includes(currentFilter.value))),
+          duo: filterByLevel(gamesData.duo.filter(game => game.tags.includes(currentFilter.value))),
+          materials: []
         };
     }
   };
@@ -72,6 +98,9 @@ const Main = () => {
           )}
           {filteredContent.duo?.length > 0 && (
             <GameSlider title="Дуо(Бот)" games={filteredContent.duo} />
+          )}
+          {filteredContent.materials?.length > 0 && (
+            <GameSlider title="Материалы" games={filteredContent.materials} />
           )}
         </>
       )}

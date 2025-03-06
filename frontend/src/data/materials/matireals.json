@@ -1,0 +1,131 @@
+{
+  "levels": ["A1", "A2", "B1", "B2", "C1", "C2"],
+  "content": [
+    {
+      "id": 1,
+      "title": "Базовая грамматика",
+      "author": "Language School",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "A1"
+    },
+    {
+      "id": 2,
+      "title": "Начальный словарь",
+      "author": "Basic Learning",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "A1"
+    },
+    {
+      "id": 3,
+      "title": "Алфавит и произношение",
+      "author": "Phonetics Pro",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "A1"
+    },
+    {
+      "id": 4,
+      "title": "Простые диалоги",
+      "author": "Speaking Practice",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "A2"
+    },
+    {
+      "id": 5,
+      "title": "Базовые времена",
+      "author": "Grammar Expert",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "A2"
+    },
+    {
+      "id": 6,
+      "title": "Повседневная лексика",
+      "author": "Vocabulary Plus",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "A2"
+    },
+    {
+      "id": 7,
+      "title": "Деловой английский",
+      "author": "Business English",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "B1"
+    },
+    {
+      "id": 8,
+      "title": "Идиомы и фразы",
+      "author": "Expressions Master",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "B1"
+    },
+    {
+      "id": 9,
+      "title": "Сложные времена",
+      "author": "Advanced Grammar",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "B1"
+    },
+    {
+      "id": 10,
+      "title": "Академическое письмо",
+      "author": "Academic Writing",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "B2"
+    },
+    {
+      "id": 11,
+      "title": "Подготовка к IELTS",
+      "author": "IELTS Prep",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "B2"
+    },
+    {
+      "id": 12,
+      "title": "Публичные выступления",
+      "author": "Public Speaking",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "B2"
+    },
+    {
+      "id": 13,
+      "title": "Литературный анализ",
+      "author": "Literature Pro",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "C1"
+    },
+    {
+      "id": 14,
+      "title": "Научная лексика",
+      "author": "Scientific English",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "C1"
+    },
+    {
+      "id": 15,
+      "title": "Стилистика языка",
+      "author": "Style Master",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "C1"
+    },
+    {
+      "id": 16,
+      "title": "Профессиональный перевод",
+      "author": "Translation Pro",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "C2"
+    },
+    {
+      "id": 17,
+      "title": "Редактирование текстов",
+      "author": "Editor's Choice",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "C2"
+    },
+    {
+      "id": 18,
+      "title": "Креативное письмо",
+      "author": "Creative Writing",
+      "image": "https://via.placeholder.com/200x250",
+      "level": "C2"
+    }
+  ]
+} 
