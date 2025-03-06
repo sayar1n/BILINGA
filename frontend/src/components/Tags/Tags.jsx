@@ -7,33 +7,48 @@ import { materialsData } from '../../data/materials/matireals';
 const Tags = ({ onFilterChange }) => {
   const [activeTag, setActiveTag] = useState('Все');
   const [showLevels, setShowLevels] = useState(false);
-  const [activeLevel, setActiveLevel] = useState(null);
   const [currentCategory, setCurrentCategory] = useState(null);
+  // Храним уровни для каждой категории отдельно
+  const [categoryLevels, setCategoryLevels] = useState({
+    'Все': null,
+    'Игры(Все)': null,
+    'Соло': null,
+    'Дуо(Бот)': null,
+    'Материалы': null
+  });
 
   const handleTagClick = (tag) => {
     setActiveTag(tag);
     if (tag === 'Материалы') {
       setShowLevels(false);
-      setActiveLevel(null);
+      setCategoryLevels(prev => ({ ...prev, [tag]: null }));
       onFilterChange && onFilterChange({ type: 'material', value: 'все' });
     } else {
       setShowLevels(false);
-      setActiveLevel(null);
       onFilterChange && onFilterChange({ 
         type: 'category', 
         value: tag,
-        level: null 
+        level: categoryLevels[tag]
       });
     }
   };
 
   const handleExpandClick = (category) => {
+    if (currentCategory === category) {
+      setShowLevels(prev => !prev);
+    } else {
+      setShowLevels(true);
+    }
     setCurrentCategory(category);
-    setShowLevels(prev => !prev);
   };
 
   const handleLevelClick = (level) => {
-    setActiveLevel(level);
+    // Сохраняем выбранный уровень для текущей категории
+    setCategoryLevels(prev => ({
+      ...prev,
+      [currentCategory]: level
+    }));
+
     if (currentCategory === 'Материалы') {
       onFilterChange && onFilterChange({ type: 'material', value: level });
     } else {
@@ -47,7 +62,6 @@ const Tags = ({ onFilterChange }) => {
 
   return (
     <div className={styles.tagsContainer}>
-      <h1 className={styles.mainTitle}>Игры</h1>
       <div className={styles.tags}>
         {gamesData.categories.map((tag) => (
           <Tag
@@ -61,12 +75,13 @@ const Tags = ({ onFilterChange }) => {
           />
         ))}
       </div>
+      <h1 className={styles.mainTitle}>Игры</h1>
       {showLevels && (
         <div className={styles.levels}>
           {materialsData.levels.map((level) => (
             <button
               key={level}
-              className={`${styles.levelTag} ${activeLevel === level ? styles.active : ''}`}
+              className={`${styles.levelTag} ${categoryLevels[currentCategory] === level ? styles.active : ''}`}
               onClick={() => handleLevelClick(level)}
             >
               {level}

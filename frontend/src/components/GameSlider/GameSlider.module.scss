@@ -1,10 +1,17 @@
-.sliderContainer {
-  margin: 20px 0;
+.container {
+  margin-bottom: 32px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+    text-align: left;
+  }
 }
 
-.title {
-  margin-bottom: 16px;
-  font-size: 24px;
+.sliderContainer {
+  margin: 20px 0;
 }
 
 .slider {

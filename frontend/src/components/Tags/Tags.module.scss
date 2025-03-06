@@ -1,18 +1,20 @@
 .tagsContainer {
   margin-bottom: 24px;
-}
 
-.mainTitle {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 16px;
-}
+  .mainTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 16px;
+    order: 2;
+  }
 
-.tags {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  .tags {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    order: 1;
+  }
 }
 
 .tag {
