@@ -7,6 +7,9 @@ import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import Games from './pages/Games/Games';
 import Materials from './pages/Materials/Materials';
+import NotesPageList from './pages/NotesPage/NotesFirst/NotesPageList';
+import NotesPage from './pages/NotesPage/NotesSecond/NotesPage';
+import DictionaryPage from './pages/DictionaryPage/DictionaryPage';
 
 const AppRoutes = () => {
   return (
@@ -21,6 +24,9 @@ const AppRoutes = () => {
           <Route path="games/solo" element={<Games />} />
           <Route path="games/duo" element={<Games />} />
           <Route path="materials" element={<Materials />} />
+          <Route path="notes" element={<NotesPageList />} />
+          <Route path="notes/:id" element={<NotesPage />} />
+          <Route path="dictionary" element={<DictionaryPage />} />
         </Route>
       </Routes>
     </Router>

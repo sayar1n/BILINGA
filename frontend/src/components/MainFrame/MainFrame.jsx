@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from '../SideBar/SideBar';
 import Header from '../Header/Header';
 import InfoSide from '../InfoSide/InfoSide';
+import VocSide from '../VocSide/VocSide';
 import styles from './MainFrame.module.scss';
 
 const MainFrame = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedType, setSelectedType] = useState('games');
+  const location = useLocation();
 
   const handleItemSelect = (item, type) => {
     setSelectedItem(item);
     setSelectedType(type);
   };
+
+  const isNotesOrDictionary = location.pathname.startsWith('/notes') || location.pathname.startsWith('/dictionary');
 
   return (
     <div className={styles.mainFrame}>
@@ -25,7 +29,11 @@ const MainFrame = () => {
           </div>
         </div>
       </div>
-      <InfoSide item={selectedItem} type={selectedType} />
+      {isNotesOrDictionary ? (
+        <VocSide />
+      ) : (
+        <InfoSide item={selectedItem} type={selectedType} />
+      )}
     </div>
   );
 };
