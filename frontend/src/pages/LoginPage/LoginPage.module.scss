@@ -90,3 +90,20 @@ h2 {
     }
   }
 }
+
+.registerLink {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+
+  .link {
+    color: var(--color-text-dark);
+    cursor: pointer;
+    margin-left: 4px;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

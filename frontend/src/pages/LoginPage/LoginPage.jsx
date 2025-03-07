@@ -36,6 +36,12 @@ const LoginPage = () => {
               <span onClick={() => navigate('/reset-password')}>Забыли пароль?</span>
             </div>
             <button className={styles.btn}>Войти</button>
+            <div className={styles.registerLink}>
+              <span>Нет аккаунта? </span>
+              <span onClick={() => navigate('/register')} className={styles.link}>
+                Зарегистрироваться
+              </span>
+            </div>
           </form>
         </div>
       </div>
