@@ -5,6 +5,8 @@ import Main from './pages/Main/Main';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
+import Games from './pages/Games/Games';
+
 
 const AppRoutes = () => {
   return (
@@ -15,6 +17,9 @@ const AppRoutes = () => {
         <Route path="register" element={<RegisterPage />} />
         <Route path="/" element={<MainFrame />}>
           <Route path="main" element={<Main />} />
+          <Route path="games" element={<Games />} />
+          <Route path="games/solo" element={<Games />} />
+          <Route path="games/duo" element={<Games />} />
         </Route>
       </Routes>
     </Router>

@@ -1,5 +1,8 @@
 .tagsContainer {
   margin-bottom: 24px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 40px;
 
   .mainTitle {
     font-size: 24px;
@@ -105,3 +108,4 @@
     color: white;
   }
 }
+

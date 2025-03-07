@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './SideBar.module.scss';
 
 const SideBar = () => {
   const [showGameSubmenu, setShowGameSubmenu] = useState(false);
+  const navigate = useNavigate();
+
+  const handleGameSubmenuClick = (filter) => {
+    if (filter) {
+      navigate(`/games?filter=${filter}`);
+    } else {
+      navigate('/games');
+    }
+  };
 
   return (
     <div className={styles.sidebar}>
@@ -11,7 +20,7 @@ const SideBar = () => {
       
       {/* Основная навигация */}
       <nav className={styles.mainNav}>
-        <NavLink to="/" className={styles.navLink}>Главная</NavLink>
+        <NavLink to="/main" className={styles.navLink}>Главная</NavLink>
         
         {/* Игры с подменю */}
         <div 
@@ -19,11 +28,27 @@ const SideBar = () => {
           onMouseEnter={() => setShowGameSubmenu(true)}
           onMouseLeave={() => setShowGameSubmenu(false)}
         >
-          <NavLink to="/games" className={styles.navLink}>Игры</NavLink>
+          <NavLink 
+            to="/games" 
+            className={styles.navLink}
+            onClick={() => handleGameSubmenuClick()}
+          >
+            Игры
+          </NavLink>
           {showGameSubmenu && (
             <div className={styles.submenu}>
-              <NavLink to="/games/solo" className={styles.submenuLink}>Соло</NavLink>
-              <NavLink to="/games/duo" className={styles.submenuLink}>Дуо(Бот)</NavLink>
+              <button 
+                className={styles.submenuLink}
+                onClick={() => handleGameSubmenuClick('Соло')}
+              >
+                Соло
+              </button>
+              <button 
+                className={styles.submenuLink}
+                onClick={() => handleGameSubmenuClick('Дуо(Бот)')}
+              >
+                Дуо(Бот)
+              </button>
             </div>
           )}
         </div>

@@ -34,7 +34,7 @@ const GameSlider = ({ title, games, onItemSelect }) => {
             <div 
               key={game.id}
               onClick={() => handleCardClick(game)}
-              style={{ cursor: 'pointer' }}
+              className={styles.cardWrapper}
             >
               <GameCard
                 title={game.title}

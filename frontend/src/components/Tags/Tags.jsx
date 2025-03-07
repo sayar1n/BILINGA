@@ -1,28 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tag from './Tag';
 import styles from './Tags.module.scss';
 import { gamesData } from '../../data/games/games';
 import { materialsData } from '../../data/materials/matireals';
 
-const Tags = ({ onFilterChange }) => {
-  const [activeTag, setActiveTag] = useState('Все');
+const Tags = ({ 
+  onFilterChange, 
+  categories = gamesData.categories, 
+  showMaterialsFilter = true,
+  initialActiveTag = 'Все'
+}) => {
+  const [activeTag, setActiveTag] = useState(initialActiveTag);
   const [showLevels, setShowLevels] = useState(false);
   const [showTypes, setShowTypes] = useState(false);
   const [currentCategory, setCurrentCategory] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   
+  // Обновляем активный тег при изменении initialActiveTag
+  useEffect(() => {
+    setActiveTag(initialActiveTag);
+    handleTagClick(initialActiveTag);
+  }, [initialActiveTag]);
+
   // Храним уровни для каждой категории отдельно
-  const [categoryLevels, setCategoryLevels] = useState({
-    'Все': null,
-    'Игры(Все)': null,
-    'Соло': null,
-    'Дуо(Бот)': null,
-    'Материалы': null
-  });
+  const [categoryLevels, setCategoryLevels] = useState(
+    categories.reduce((acc, category) => {
+      acc[category] = null;
+      return acc;
+    }, {})
+  );
 
   const handleTagClick = (tag) => {
     setActiveTag(tag);
-    if (tag === 'Материалы') {
+    if (tag === 'Материалы' && showMaterialsFilter) {
       setShowLevels(false);
       setShowTypes(false);
       setCategoryLevels(prev => ({ ...prev, [tag]: null }));
@@ -41,8 +51,7 @@ const Tags = ({ onFilterChange }) => {
 
   const handleExpandClick = (category) => {
     if (currentCategory === category) {
-      if (category === 'Материалы') {
-        // Если это материалы, показываем оба фильтра
+      if (category === 'Материалы' && showMaterialsFilter) {
         setShowLevels(!showLevels);
         setShowTypes(!showTypes);
       } else {
@@ -50,7 +59,7 @@ const Tags = ({ onFilterChange }) => {
         setShowTypes(false);
       }
     } else {
-      if (category === 'Материалы') {
+      if (category === 'Материалы' && showMaterialsFilter) {
         setShowLevels(true);
         setShowTypes(true);
       } else {
@@ -67,7 +76,7 @@ const Tags = ({ onFilterChange }) => {
       [currentCategory]: level
     }));
 
-    if (currentCategory === 'Материалы') {
+    if (currentCategory === 'Материалы' && showMaterialsFilter) {
       onFilterChange && onFilterChange({ 
         type: 'material', 
         value: level,
@@ -84,7 +93,7 @@ const Tags = ({ onFilterChange }) => {
 
   const handleTypeClick = (type) => {
     setSelectedType(type === selectedType ? null : type);
-    if (currentCategory === 'Материалы') {
+    if (currentCategory === 'Материалы' && showMaterialsFilter) {
       onFilterChange && onFilterChange({ 
         type: 'material', 
         value: categoryLevels[currentCategory],
@@ -96,7 +105,7 @@ const Tags = ({ onFilterChange }) => {
   return (
     <div className={styles.tagsContainer}>
       <div className={styles.tags}>
-        {gamesData.categories.map((tag) => (
+        {categories.map((tag) => (
           <Tag
             key={tag}
             label={tag}
@@ -109,7 +118,7 @@ const Tags = ({ onFilterChange }) => {
         ))}
       </div>
       
-      {currentCategory === 'Материалы' && showTypes && (
+      {showMaterialsFilter && currentCategory === 'Материалы' && showTypes && (
         <div className={styles.types}>
           <button
             className={`${styles.typeTag} ${!selectedType ? styles.active : ''}`}
@@ -137,7 +146,7 @@ const Tags = ({ onFilterChange }) => {
           >
             Все уровни
           </button>
-          {materialsData.levels.map((level) => (
+          {(showMaterialsFilter && currentCategory === 'Материалы' ? materialsData.levels : gamesData.levels).map((level) => (
             <button
               key={level}
               className={`${styles.levelTag} ${categoryLevels[currentCategory] === level ? styles.active : ''}`}
