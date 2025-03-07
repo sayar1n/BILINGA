@@ -20,6 +20,7 @@
   border-radius: 8px;
   padding: 8px 16px;
   width: 300px;
+  position: relative;
 
   &:focus-within {
     outline: 2px solid var(--color-primary);
@@ -56,6 +57,71 @@
   &:hover svg path {
     fill: var(--color-text-primary);
   }
+}
+
+.searchResults {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--color-shadow);
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 3;
+}
+
+.resultSection {
+  padding: 12px 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+.resultTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  padding: 0 16px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  gap: 12px;
+
+  &:hover {
+    background: var(--color-background);
+  }
+}
+
+.resultImage {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.resultInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.resultName {
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.resultType {
+  font-size: 12px;
+  color: var(--color-text-secondary);
 }
 
 .userSection {
