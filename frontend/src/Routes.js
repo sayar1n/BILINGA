@@ -6,7 +6,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import Games from './pages/Games/Games';
-
+import Materials from './pages/Materials/Materials';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +20,7 @@ const AppRoutes = () => {
           <Route path="games" element={<Games />} />
           <Route path="games/solo" element={<Games />} />
           <Route path="games/duo" element={<Games />} />
+          <Route path="materials" element={<Materials />} />
         </Route>
       </Routes>
     </Router>
