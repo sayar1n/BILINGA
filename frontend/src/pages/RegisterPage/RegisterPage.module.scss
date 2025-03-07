@@ -1,5 +1,5 @@
 .loginPage {
-  background-color: #a4a19c;
+  background-color: var(--color-auth-background);
   overflow: hidden;
   position: relative;
   height: 100vh;
@@ -11,10 +11,10 @@
 }
 
 .loginWrapper {
-  background: rgba(252, 252, 252, 0);
+  background: var(--color-transparent);
   padding: 30px;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 120px #ffffff, 0px 3px 6px #92929259;
+  box-shadow: inset 0px 0px 120px var(--color-auth-shadow), 0px 3px 6px var(--color-shadow-variant);
   backdrop-filter: blur(10px);
   position: relative;
   z-index: 2;
@@ -31,7 +31,7 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #222222;
+  color: var(--color-text-dark);
 }
 
 .formGroup {
@@ -42,26 +42,26 @@ h2 {
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #222222;
+    color: var(--color-text-dark);
   }
 
   input {
     width: 100%;
     padding: 10px;
-    border: 1.5px solid #222222;
+    border: 1.5px solid var(--color-auth-border);
     border-radius: 10px;
     font-size: 16px;
     box-sizing: border-box;
-    background: var(--input-bg, rgba(255, 255, 255, 0.6));
-    color: #222222;
+    background: var(--color-input-bg);
+    color: var(--color-text-dark);
   }
 }
 
 .btn {
   width: 100%;
   padding: 12px;
-  background: #222222;
-  color: #fafafa;
+  background: var(--color-text-dark);
+  color: var(--color-text-light);
   border: none;
   border-radius: 30px;
   font-size: 18px;
@@ -79,7 +79,7 @@ h2 {
   margin-top: 1rem;
 
   span {
-    color: #222222;
+    color: var(--color-text-dark);
     cursor: pointer;
     font-size: 0.9rem;
     text-decoration: none;

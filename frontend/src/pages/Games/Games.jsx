@@ -18,7 +18,6 @@ const Games = () => {
     level: null
   });
 
-  // Устанавливаем начальный фильтр из URL параметров или 'Все' по умолчанию
   useEffect(() => {
     const initialFilter = searchParams.get('filter');
     setCurrentFilter(prev => ({
