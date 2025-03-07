@@ -12,24 +12,39 @@ const Main = () => {
   const [currentFilter, setCurrentFilter] = useState({ 
     type: 'category', 
     value: 'Все',
-    level: null 
+    level: null,
+    materialType: null
   });
 
   const handleFilterChange = (filter) => {
-    setCurrentFilter(filter);
+    // Сохраняем предыдущий materialType если он не указан в новом фильтре
+    const newFilter = {
+      ...filter,
+      materialType: filter.materialType !== undefined ? filter.materialType : currentFilter.materialType
+    };
+    setCurrentFilter(newFilter);
   };
 
   const getFilteredContent = () => {
     if (currentFilter.type === 'material') {
-      if (currentFilter.value === 'все') {
-        return {
-          materials: materialsData.content,
-          solo: [],
-          duo: []
-        };
+      let filteredMaterials = materialsData.content;
+
+      // Фильтрация по уровню
+      if (currentFilter.value && currentFilter.value !== 'все') {
+        filteredMaterials = filteredMaterials.filter(material => 
+          material.level === currentFilter.value
+        );
       }
+
+      // Фильтрация по типу материала (книга/статья)
+      if (currentFilter.materialType) {
+        filteredMaterials = filteredMaterials.filter(material => 
+          material.materialType === currentFilter.materialType
+        );
+      }
+
       return {
-        materials: materialsData.content.filter(material => material.level === currentFilter.value),
+        materials: filteredMaterials,
         solo: [],
         duo: []
       };
@@ -40,14 +55,23 @@ const Main = () => {
       return games.filter(game => game.level === currentFilter.level);
     };
 
+    const filterMaterialsByType = (materials) => {
+      if (!currentFilter.materialType) return materials;
+      return materials.filter(material => 
+        material.materialType === currentFilter.materialType
+      );
+    };
+
     switch (currentFilter.value) {
       case 'Все':
         return {
           solo: filterByLevel(gamesData.solo),
           duo: filterByLevel(gamesData.duo),
-          materials: currentFilter.level ? 
-            materialsData.content.filter(material => material.level === currentFilter.level) :
-            materialsData.content
+          materials: filterMaterialsByType(
+            currentFilter.level ? 
+              materialsData.content.filter(material => material.level === currentFilter.level) :
+              materialsData.content
+          )
         };
       case 'Игры(Все)':
         return {
@@ -68,12 +92,17 @@ const Main = () => {
           materials: []
         };
       case 'Материалы':
+        let materials = materialsData.content;
+        if (currentFilter.level) {
+          materials = materials.filter(material => material.level === currentFilter.level);
+        }
+        if (currentFilter.materialType) {
+          materials = materials.filter(material => material.materialType === currentFilter.materialType);
+        }
         return {
           solo: [],
           duo: [],
-          materials: currentFilter.level ? 
-            materialsData.content.filter(material => material.level === currentFilter.level) :
-            materialsData.content
+          materials: materials
         };
       default:
         return {
@@ -86,12 +115,23 @@ const Main = () => {
 
   const filteredContent = getFilteredContent();
 
+  const getTitle = () => {
+    let title = 'Материалы';
+    if (currentFilter.value && currentFilter.value !== 'все') {
+      title += ` ${currentFilter.value}`;
+    }
+    if (currentFilter.materialType) {
+      title += ` (${currentFilter.materialType === 'book' ? 'Книги' : 'Статьи'})`;
+    }
+    return title;
+  };
+
   return (
     <div className={styles.container}>
       <Tags onFilterChange={handleFilterChange} />
       {currentFilter.type === 'material' ? (
         <GameSlider 
-          title={`Материалы ${currentFilter.value}`} 
+          title={getTitle()}
           games={filteredContent.materials}
           onItemSelect={onItemSelect}
         />
@@ -113,7 +153,7 @@ const Main = () => {
           )}
           {filteredContent.materials?.length > 0 && (
             <GameSlider 
-              title="Материалы" 
+              title={getTitle()}
               games={filteredContent.materials}
               onItemSelect={onItemSelect}
             />

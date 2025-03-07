@@ -1,5 +1,6 @@
 {
   "levels": ["A1", "A2", "B1", "B2", "C1", "C2"],
+  "types": ["book", "article"],
   "content": [
     {
       "id": 1,
@@ -8,7 +9,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "A1",
       "description": "Основы английской грамматики в простой и понятной форме. Включает упражнения и практические примеры для начинающих.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     },
     {
       "id": 2,
@@ -17,7 +19,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "A1",
       "description": "Самые необходимые слова и фразы для повседневного общения. С аудиоматериалами и практическими заданиями.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     },
     {
       "id": 3,
@@ -26,7 +29,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "A1",
       "description": "Интерактивный курс по основам английского произношения. Включает аудиоматериалы и упражнения для практики.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 4,
@@ -35,7 +39,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "A2",
       "description": "Коллекция повседневных диалогов с аудио и практическими заданиями. Для уверенного общения на базовом уровне.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 5,
@@ -44,7 +49,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "A2",
       "description": "Подробный разбор основных времен английского языка с примерами и упражнениями.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 6,
@@ -53,7 +59,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "A2",
       "description": "Расширенный словарный запас для повседневных ситуаций с контекстными примерами.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     },
     {
       "id": 7,
@@ -62,7 +69,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "B1",
       "description": "Курс делового английского для профессионального общения. Включает шаблоны писем и переговоров.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     },
     {
       "id": 8,
@@ -71,7 +79,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "B1",
       "description": "Популярные английские идиомы и устойчивые выражения с примерами использования.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 9,
@@ -80,7 +89,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "B1",
       "description": "Углубленное изучение сложных временных конструкций английского языка.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 10,
@@ -89,7 +99,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "B2",
       "description": "Руководство по написанию академических текстов на английском языке.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     },
     {
       "id": 11,
@@ -98,7 +109,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "B2",
       "description": "Комплексный курс подготовки к экзамену IELTS с практическими заданиями.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     },
     {
       "id": 12,
@@ -107,7 +119,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "B2",
       "description": "Техники и приемы для уверенных публичных выступлений на английском языке.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 13,
@@ -116,7 +129,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "C1",
       "description": "Методы анализа английской литературы с разбором классических произведений.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     },
     {
       "id": 14,
@@ -125,7 +139,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "C1",
       "description": "Специализированная лексика для научных работ и исследований на английском.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 15,
@@ -134,7 +149,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "C1",
       "description": "Изучение различных стилей английского языка и их применение.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 16,
@@ -143,7 +159,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "C2",
       "description": "Техники и методы профессионального перевода для продвинутых пользователей.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     },
     {
       "id": 17,
@@ -152,7 +169,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "C2",
       "description": "Навыки редактирования и корректуры английских текстов любой сложности.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "article"
     },
     {
       "id": 18,
@@ -161,7 +179,8 @@
       "image": "https://via.placeholder.com/200x250",
       "level": "C2",
       "description": "Развитие навыков творческого письма на английском языке. Для продвинутого уровня.",
-      "type": "materials"
+      "type": "materials",
+      "materialType": "book"
     }
   ]
 } 

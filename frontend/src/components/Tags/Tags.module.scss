@@ -61,7 +61,7 @@
   }
 }
 
-.levels {
+.levels, .types {
   margin-top: 12px;
   display: flex;
   gap: 8px;
@@ -69,7 +69,11 @@
   padding-left: 24px;
 }
 
-.levelTag {
+.types {
+  margin-bottom: 12px;
+}
+
+.levelTag, .typeTag {
   padding: 6px 12px;
   background-color: #F0F7E6;
   border: none;
@@ -85,6 +89,19 @@
 
   &.active {
     background-color: #9DC36B;
+    color: white;
+  }
+}
+
+.typeTag {
+  background-color: #FFE8E0;
+
+  &:hover {
+    background-color: #FFD0C2;
+  }
+
+  &.active {
+    background-color: #FF9B7B;
     color: white;
   }
 }
