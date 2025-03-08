@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using backend.Data;
 using backend.Models;
-
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
@@ -42,8 +41,12 @@ namespace backend.Controllers
                 return NotFound();
             }
             
+            user.Email = updatedUser.Email;
             user.Username = updatedUser.Username;
-            user.Password = updatedUser.Password;
+            if (!string.IsNullOrEmpty(updatedUser.Password))
+            {
+                user.Password = BCrypt.Net.BCrypt.HashPassword(updatedUser.Password);
+            }
 
             _context.SaveChanges();
             return Ok(user);
