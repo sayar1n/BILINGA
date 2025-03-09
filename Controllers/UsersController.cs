@@ -47,6 +47,10 @@ namespace backend.Controllers
             {
                 user.Password = BCrypt.Net.BCrypt.HashPassword(updatedUser.Password);
             }
+            if (!string.IsNullOrEmpty(updatedUser.PhoneNumber))
+            {
+                user.PhoneNumber = updatedUser.PhoneNumber;
+            }
 
             _context.SaveChanges();
             return Ok(user);
