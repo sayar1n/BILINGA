@@ -42,7 +42,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 
-
+builder.Services.AddScoped<ArticleService>();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
