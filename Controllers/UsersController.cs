@@ -41,8 +41,14 @@ namespace backend.Controllers
                 return NotFound();
             }
             
-            user.Email = updatedUser.Email;
-            user.Username = updatedUser.Username;
+            if (!string.IsNullOrEmpty(updatedUser.Email))
+            {
+                user.Email = updatedUser.Email;
+            }
+            if (!string.IsNullOrEmpty(updatedUser.Username))
+            {
+                user.Username = updatedUser.Username;
+            }
             if (!string.IsNullOrEmpty(updatedUser.Password))
             {
                 user.Password = BCrypt.Net.BCrypt.HashPassword(updatedUser.Password);
