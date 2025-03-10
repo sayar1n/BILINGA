@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useOutletContext, useSearchParams } from 'react-router-dom';
+import { useOutletContext, useSearchParams, useNavigate } from 'react-router-dom';
 import Tags from '../../components/Tags/Tags';
 import GameSlider from '../../components/GameSlider/GameSlider';
 import GameGrid from '../../components/GameGrid/GameGrid';
 import { gamesData } from '../../data/games/games';
-import styles from './Games.module.scss';
+import styles from './GamesPage.module.scss';
 
 const gamesCategories = ['Все', 'Соло', 'Дуо(Бот)'];
 
-const Games = () => {
+const GamesPage = () => {
   const { onItemSelect } = useOutletContext();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const [currentFilter, setCurrentFilter] = useState({ 
     type: 'category', 
@@ -28,6 +29,19 @@ const Games = () => {
 
   const handleFilterChange = (filter) => {
     setCurrentFilter(filter);
+  };
+
+  const handleGameSelect = (game) => {
+    if (onItemSelect) {
+      onItemSelect({
+        ...game,
+        onPlay: () => {
+          if (game.gameRoute) {
+            navigate(game.gameRoute);
+          }
+        }
+      });
+    }
   };
 
   const getFilteredContent = () => {
@@ -77,14 +91,14 @@ const Games = () => {
             <GameGrid 
               title="Соло" 
               games={filteredContent.solo}
-              onItemSelect={onItemSelect}
+              onItemSelect={handleGameSelect}
             />
           )}
           {filteredContent.duo?.length > 0 && (
             <GameGrid 
               title="Дуо(Бот)" 
               games={filteredContent.duo}
-              onItemSelect={onItemSelect}
+              onItemSelect={handleGameSelect}
             />
           )}
         </>
@@ -94,14 +108,14 @@ const Games = () => {
             <GameSlider 
               title="Соло" 
               games={filteredContent.solo}
-              onItemSelect={onItemSelect}
+              onItemSelect={handleGameSelect}
             />
           )}
           {filteredContent.duo?.length > 0 && (
             <GameSlider 
               title="Дуо(Бот)" 
               games={filteredContent.duo}
-              onItemSelect={onItemSelect}
+              onItemSelect={handleGameSelect}
             />
           )}
         </>
@@ -110,4 +124,4 @@ const Games = () => {
   );
 };
 
-export default Games; 
+export default GamesPage; 

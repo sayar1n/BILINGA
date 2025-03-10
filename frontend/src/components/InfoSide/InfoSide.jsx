@@ -12,6 +12,12 @@ const InfoSide = ({ item, type }) => {
   const currentItem = item || defaultItem;
   const buttonText = type === 'materials' ? 'Читать сейчас' : 'Играть сейчас';
 
+  const handleAction = () => {
+    if (item && item.onPlay) {
+      item.onPlay();
+    }
+  };
+
   return (
     <div className={styles.infoSide}>
       <div className={styles.content}>
@@ -23,7 +29,7 @@ const InfoSide = ({ item, type }) => {
           <p className={styles.description}>{currentItem.description}</p>
         </div>
         {item && ( // Показываем кнопку только если есть выбранный item
-          <button className={styles.actionButton}>
+          <button className={styles.actionButton} onClick={handleAction}>
             {buttonText} <span className={styles.arrow}>▶</span>
           </button>
         )}
