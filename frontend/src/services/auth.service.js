@@ -250,12 +250,31 @@ const getUser = () => {
     const userStr = localStorage.getItem('user');
     if (userStr) {
         try {
-            return JSON.parse(userStr);
+            const user = JSON.parse(userStr);
+            console.log('Получены данные пользователя из localStorage:', user);
+            return user;
         } catch (e) {
             console.error('Error parsing user data:', e);
             return null;
         }
     }
+    
+    // Если пользователь не найден в localStorage, проверяем список пользователей
+    const usersStr = localStorage.getItem('users');
+    if (usersStr) {
+        try {
+            const users = JSON.parse(usersStr);
+            if (users.length > 0) {
+                // Берем первого пользователя из списка (для демонстрации)
+                console.log('Пользователь не найден в localStorage, используем первого из списка:', users[0]);
+                localStorage.setItem('user', JSON.stringify(users[0]));
+                return users[0];
+            }
+        } catch (e) {
+            console.error('Error parsing users data:', e);
+        }
+    }
+    
     return null;
 };
 
