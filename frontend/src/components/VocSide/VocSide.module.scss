@@ -1,0 +1,128 @@
+.vocSide {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--color-info-background);
+  box-shadow: -2px 0 10px var(--color-shadow);
+  padding: 20px;
+  overflow-y: auto;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    min-height: calc(100vh - 160px);
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-surface);
+    margin-bottom: 12px;
+    text-align: center;
+    margin-top: 70px;
+    white-space: pre-line;
+    line-height: 1.4;
+  }
+
+  .searchContainer {
+    width: 100%;
+    padding: 8px;
+    background: var(--color-surface-light);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    margin-top: 20px;
+  }
+
+  .searchInput {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: none;
+    color: var(--color-info-button);
+    font-size: 16px;
+    outline: none;
+
+    &::placeholder {
+      color: var(--color-text-tertiary);
+    }
+  }
+
+  .searchButton {
+    width: calc(100% - 40px);
+    padding: 12px;
+    background-color: var(--color-surface-light);
+    color: var(--color-info-button);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: var(--color-surface);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  .wordCard {
+    width: 100%;
+    text-align: center;
+    margin-top: 70px;
+  }
+
+  .backButton {
+    background: none;
+    border: none;
+    color: var(--color-surface-light);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    margin-bottom: 24px;
+    
+    &:hover {
+      color: var(--color-surface);
+    }
+  }
+
+  .word {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-surface);
+    margin-bottom: 8px;
+  }
+
+  .wordType {
+    font-size: 14px;
+    color: var(--color-surface-light);
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+
+  .translation {
+    font-size: 16px;
+    color: var(--color-surface);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .synonyms {
+    font-size: 14px;
+    color: var(--color-surface-light);
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+}

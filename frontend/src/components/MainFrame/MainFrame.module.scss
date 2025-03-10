@@ -1,0 +1,30 @@
+.mainFrame {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: 190px;
+  margin-right: 250px;
+  min-height: 100vh;
+}
+
+.contentWrapper {
+  padding: 84px 30px 30px;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+}
+
+.contentContainer {
+  width: 100%;
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 20px;
+  min-height: calc(100vh - 140px);
+  box-shadow: 0 1px 3px var(--color-shadow);
+}
+

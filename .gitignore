@@ -1,23 +1,35 @@
-# Игнорировать папки bin и obj
-bin/
-obj/
+# Игнорировать папки node_modules и bin/obj
+frontend/node_modules/
+backend/bin/
+backend/obj/
 
 # Игнорировать файлы окружения
-.env
-appsettings.Development.json
+frontend/.env
+backend/.env
 
-# Игнорировать папку для миграций (если не хотите их коммитить)
-Migrations/
+# Игнорировать логи и временные файлы
+*.log
+*.tmp
+
+# Игнорировать папки для зависимостей
+frontend/.pnp
+frontend/.pnp.js
+
+# Игнорировать папку для сборки фронтенда
+frontend/build/
+
+# Игнорировать папку для миграций Entity Framework (если не хотите их коммитить)
+backend/Migrations/
 
 # Игнорировать пользовательские настройки IDE
 .vscode/
 .idea/
 
-# Игнорировать временные файлы
+# Игнорировать файлы пакетов
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 
-# Игнорировать логи
-*.log
+# Игнорировать файлы для локальной разработки
+backend/appsettings.Development.json
