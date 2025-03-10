@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './Header.module.scss';
 import { gamesData } from '../../data/games/games';
 import { materialsData } from '../../data/materials/matireals';
+import { getUser } from '../../services/auth.service';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -10,7 +11,35 @@ const Header = () => {
     games: [],
     materials: []
   });
+  const [username, setUsername] = useState('Username');
   const searchContainerRef = useRef(null);
+
+  // Загружаем имя пользователя при монтировании компонента
+  useEffect(() => {
+    loadUserData();
+    
+    // Добавляем слушатель события для обновления имени пользователя
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+  
+  // Функция для загрузки данных пользователя
+  const loadUserData = () => {
+    const user = getUser();
+    if (user && user.username) {
+      setUsername(user.username);
+    }
+  };
+  
+  // Обработчик изменения localStorage
+  const handleStorageChange = (e) => {
+    if (e.key === 'user') {
+      loadUserData();
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -117,7 +146,7 @@ const Header = () => {
           <div className={styles.userAvatar}>
             <img src="https://via.placeholder.com/32" alt="User avatar" />
           </div>
-          <span className={styles.username}>Username</span>
+          <span className={styles.username}>{username}</span>
           <button className={styles.dropdownButton}>
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1L6 6L11 1" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>

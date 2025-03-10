@@ -223,6 +223,9 @@ const Account = () => {
       console.log('Обновляем пользователя с новым паролем:', updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser));
       
+      // Отправляем событие изменения localStorage
+      window.dispatchEvent(new Event('storage'));
+      
       // Обновляем пользователя в списке пользователей
       const usersStr = localStorage.getItem('users');
       if (usersStr) {
@@ -281,6 +284,9 @@ const Account = () => {
         
         console.log('Обновляем данные пользователя в localStorage:', updatedUser);
         localStorage.setItem('user', JSON.stringify(updatedUser));
+        
+        // Отправляем событие изменения localStorage
+        window.dispatchEvent(new Event('storage'));
         
         // Обновляем пользователя в списке пользователей
         const usersStr = localStorage.getItem('users');
