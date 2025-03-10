@@ -1,0 +1,274 @@
+{
+  "words": [
+    {
+      "id": 1,
+      "word": "abandon",
+      "partOfSpeech": "verb",
+      "transcription": "/əˈbændən/",
+      "translation": "покидать, оставлять, отказываться",
+      "examples": {
+        "eng": [
+          "He decided to abandon the project",
+          "The crew was forced to abandon ship"
+        ],
+        "rus": [
+          "Он решил отказаться от проекта",
+          "Экипаж был вынужден покинуть корабль"
+        ]
+      },
+      "synonyms": ["desert", "forsake", "leave", "quit"]
+    },
+    {
+      "id": 2,
+      "word": "brilliant",
+      "partOfSpeech": "adjective",
+      "transcription": "/ˈbrɪljənt/",
+      "translation": "блестящий, великолепный, яркий",
+      "examples": {
+        "eng": [
+          "She had a brilliant idea",
+          "The sun was brilliant in the sky"
+        ],
+        "rus": [
+          "У неё была блестящая идея",
+          "Солнце ярко сияло в небе"
+        ]
+      },
+      "synonyms": ["bright", "intelligent", "magnificent", "splendid"]
+    },
+    {
+      "id": 3,
+      "word": "courage",
+      "partOfSpeech": "noun",
+      "transcription": "/ˈkʌrɪdʒ/",
+      "translation": "храбрость, мужество, отвага",
+      "examples": {
+        "eng": [
+          "It takes courage to stand up for what you believe in",
+          "The soldier showed great courage in battle"
+        ],
+        "rus": [
+          "Нужна храбрость, чтобы отстаивать свои убеждения",
+          "Солдат проявил большое мужество в бою"
+        ]
+      },
+      "synonyms": ["bravery", "valor", "fearlessness", "nerve"]
+    },
+    {
+      "id": 4,
+      "word": "determine",
+      "partOfSpeech": "verb",
+      "transcription": "/dɪˈtɜːrmɪn/",
+      "translation": "определять, устанавливать, решать",
+      "examples": {
+        "eng": [
+          "We need to determine the cause of the problem",
+          "The test will determine who gets the job"
+        ],
+        "rus": [
+          "Нам нужно определить причину проблемы",
+          "Тест определит, кто получит работу"
+        ]
+      },
+      "synonyms": ["decide", "establish", "ascertain", "resolve"]
+    },
+    {
+      "id": 5,
+      "word": "essential",
+      "partOfSpeech": "adjective",
+      "transcription": "/ɪˈsenʃl/",
+      "translation": "необходимый, существенный, важнейший",
+      "examples": {
+        "eng": [
+          "Water is essential for life",
+          "These skills are essential for the job"
+        ],
+        "rus": [
+          "Вода необходима для жизни",
+          "Эти навыки необходимы для работы"
+        ]
+      },
+      "synonyms": ["crucial", "vital", "fundamental", "necessary"]
+    },
+    {
+      "id": 6,
+      "word": "flourish",
+      "partOfSpeech": "verb",
+      "transcription": "/ˈflʌrɪʃ/",
+      "translation": "процветать, преуспевать, расцветать",
+      "examples": {
+        "eng": [
+          "The business continues to flourish",
+          "Plants flourish in good soil"
+        ],
+        "rus": [
+          "Бизнес продолжает процветать",
+          "Растения процветают в хорошей почве"
+        ]
+      },
+      "synonyms": ["thrive", "prosper", "bloom", "grow"]
+    },
+    {
+      "id": 7,
+      "word": "gratitude",
+      "partOfSpeech": "noun",
+      "transcription": "/ˈɡrætɪtjuːd/",
+      "translation": "благодарность, признательность",
+      "examples": {
+        "eng": [
+          "He expressed his gratitude for their help",
+          "She felt deep gratitude for the gift"
+        ],
+        "rus": [
+          "Он выразил свою благодарность за их помощь",
+          "Она чувствовала глубокую признательность за подарок"
+        ]
+      },
+      "synonyms": ["appreciation", "thankfulness", "gratefulness"]
+    },
+    {
+      "id": 8,
+      "word": "harmony",
+      "partOfSpeech": "noun",
+      "transcription": "/ˈhɑːrməni/",
+      "translation": "гармония, согласие, созвучие",
+      "examples": {
+        "eng": [
+          "They lived in perfect harmony",
+          "The colors are in harmony with each other"
+        ],
+        "rus": [
+          "Они жили в полной гармонии",
+          "Цвета гармонируют друг с другом"
+        ]
+      },
+      "synonyms": ["agreement", "peace", "accord", "unity"]
+    },
+    {
+      "id": 9,
+      "word": "illuminate",
+      "partOfSpeech": "verb",
+      "transcription": "/ɪˈluːmɪneɪt/",
+      "translation": "освещать, просвещать, проливать свет",
+      "examples": {
+        "eng": [
+          "The street lamps illuminate the road",
+          "This discovery will illuminate our understanding"
+        ],
+        "rus": [
+          "Уличные фонари освещают дорогу",
+          "Это открытие прольет свет на наше понимание"
+        ]
+      },
+      "synonyms": ["light up", "brighten", "clarify", "enlighten"]
+    },
+    {
+      "id": 10,
+      "word": "journey",
+      "partOfSpeech": "noun",
+      "transcription": "/ˈdʒɜːrni/",
+      "translation": "путешествие, поездка, путь",
+      "examples": {
+        "eng": [
+          "Life is a journey, not a destination",
+          "They made the journey by train"
+        ],
+        "rus": [
+          "Жизнь - это путешествие, а не пункт назначения",
+          "Они совершили поездку на поезде"
+        ]
+      },
+      "synonyms": ["trip", "voyage", "expedition", "trek"]
+    },
+    {
+      "id": 11,
+      "word": "knowledge",
+      "partOfSpeech": "noun",
+      "transcription": "/ˈnɒlɪdʒ/",
+      "translation": "знание, познание, осведомленность",
+      "examples": {
+        "eng": [
+          "Knowledge is power",
+          "He has extensive knowledge of history"
+        ],
+        "rus": [
+          "Знание - сила",
+          "У него обширные знания по истории"
+        ]
+      },
+      "synonyms": ["understanding", "expertise", "wisdom", "learning"]
+    },
+    {
+      "id": 12,
+      "word": "liberty",
+      "partOfSpeech": "noun",
+      "transcription": "/ˈlɪbərti/",
+      "translation": "свобода, воля, независимость",
+      "examples": {
+        "eng": [
+          "The statue of Liberty",
+          "They fought for liberty"
+        ],
+        "rus": [
+          "Статуя Свободы",
+          "Они боролись за свободу"
+        ]
+      },
+      "synonyms": ["freedom", "independence", "autonomy", "choice"]
+    },
+    {
+      "id": 13,
+      "word": "magnificent",
+      "partOfSpeech": "adjective",
+      "transcription": "/mæɡˈnɪfɪsnt/",
+      "translation": "великолепный, величественный, грандиозный",
+      "examples": {
+        "eng": [
+          "A magnificent view of the mountains",
+          "The palace was truly magnificent"
+        ],
+        "rus": [
+          "Великолепный вид на горы",
+          "Дворец был поистине величественным"
+        ]
+      },
+      "synonyms": ["splendid", "majestic", "impressive", "grand"]
+    },
+    {
+      "id": 14,
+      "word": "nurture",
+      "partOfSpeech": "verb",
+      "transcription": "/ˈnɜːrtʃər/",
+      "translation": "воспитывать, растить, питать",
+      "examples": {
+        "eng": [
+          "Parents nurture their children",
+          "She nurtured the plants in her garden"
+        ],
+        "rus": [
+          "Родители воспитывают своих детей",
+          "Она выращивала растения в своем саду"
+        ]
+      },
+      "synonyms": ["care for", "raise", "foster", "cultivate"]
+    },
+    {
+      "id": 15,
+      "word": "observe",
+      "partOfSpeech": "verb",
+      "transcription": "/əbˈzɜːrv/",
+      "translation": "наблюдать, замечать, соблюдать",
+      "examples": {
+        "eng": [
+          "Scientists observe the behavior of animals",
+          "Please observe the rules"
+        ],
+        "rus": [
+          "Ученые наблюдают за поведением животных",
+          "Пожалуйста, соблюдайте правила"
+        ]
+      },
+      "synonyms": ["watch", "notice", "monitor", "follow"]
+    }
+  ]
+}
