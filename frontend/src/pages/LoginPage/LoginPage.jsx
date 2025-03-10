@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Blob from '../../components/Blobs/Blob';
 import styles from './LoginPage.module.scss';
+const { login } = require('../../services/auth.service');
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
+  const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Здесь будет логика авторизации
-    console.log('Попытка входа');
+    setError('');
+    
+    try {
+      await login(formData.username, formData.password);
+      navigate('/'); // Перенаправление на главную страницу после успешного входа
+    } catch (err) {
+      setError(err.message || 'Произошла ошибка при входе');
+    }
   };
 
   return (
@@ -23,22 +43,35 @@ const LoginPage = () => {
       <div className={styles.loginWrapper}>
         <div className={styles.loginContainer}>
           <h2>Вход</h2>
+          {error && <div className={styles.error}>{error}</div>}
           <form onSubmit={handleLogin}>
             <div className={styles.formGroup}>
-              <label htmlFor="login">Логин или почта</label>
-              <input type="text" id="login" />
+              <label htmlFor="username">Логин или почта</label>
+              <input 
+                type="text" 
+                id="username"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="password">Пароль</label>
-              <input type="password" id="password" />
+              <input 
+                type="password" 
+                id="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={styles.forgotPassword}>
-              <span onClick={() => navigate('/reset-password')}>Забыли пароль?</span>
+              <span onClick={() => navigate('/auth/reset-password')}>Забыли пароль?</span>
             </div>
-            <button className={styles.btn}>Войти</button>
+            <button className={styles.btn} type="submit">Войти</button>
             <div className={styles.registerLink}>
               <span>Нет аккаунта? </span>
-              <span onClick={() => navigate('/register')} className={styles.link}>
+              <span onClick={() => navigate('/auth/register')} className={styles.link}>
                 Зарегистрироваться
               </span>
             </div>

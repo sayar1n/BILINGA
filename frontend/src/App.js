@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const location = useLocation();
-  const isAuthPage = ['/login', '/register', '/reset-password'].includes(location.pathname);
+  const isAuthPage = location.pathname.startsWith('/auth');
 
   if (isAuthPage) {
     return null; // Не показываем сайдбар на страницах авторизации

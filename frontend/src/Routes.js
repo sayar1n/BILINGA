@@ -21,9 +21,11 @@ const AppRoutes = () => {
     <Router>
       <Routes>
         {/* Маршруты авторизации */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/auth">
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="reset-password" element={<ResetPasswordPage />} />
+        </Route>
 
         {/* Основной лейаут с обычным сайдбаром */}
         <Route path="/" element={<MainFrame />}>
