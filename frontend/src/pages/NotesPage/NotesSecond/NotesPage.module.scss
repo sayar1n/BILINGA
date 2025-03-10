@@ -3,6 +3,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--color-surface);
 }
 
 .header {
@@ -10,6 +13,8 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .backButton {
@@ -18,40 +23,279 @@
   color: var(--color-text-primary);
   font-size: 16px;
   cursor: pointer;
-  padding: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  transition: color 0.2s;
+  gap: 8px;
+  transition: all 0.2s ease;
 
   &:hover {
     color: var(--color-primary);
+    background-color: var(--color-primary-lighter);
+  }
+
+  &:active {
+    transform: translateX(-2px);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
 .title {
   font-size: 24px;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .editor {
   flex: 1;
   width: 100%;
-  padding: 16px;
+  padding: 20px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--color-surface);
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
   resize: none;
   color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px var(--color-shadow);
 
   &:focus {
     outline: none;
     border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
   }
 
   &::placeholder {
     color: var(--color-text-tertiary);
+  }
+
+  &:disabled {
+    background-color: var(--color-background);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.deleteButton {
+  padding: 8px 16px;
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.deleteConfirmOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.deleteConfirmModal {
+  background-color: var(--color-surface);
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 24px var(--color-shadow);
+  animation: modalAppear 0.2s ease;
+
+  h3 {
+    margin: 0 0 16px;
+    font-size: 20px;
+    color: var(--color-text-primary);
+  }
+
+  p {
+    margin: 0 0 24px;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+}
+
+.deleteConfirmButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .cancelButton {
+    background-color: var(--color-surface-variant);
+    color: var(--color-text-primary);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-border);
+    }
+  }
+
+  .confirmButton {
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-accent-dark);
+    }
+  }
+}
+
+.saveStatus {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 8px 16px;
+  background-color: var(--color-surface);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: var(--color-success);
+  }
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .notesPage {
+    padding: 16px;
+  }
+
+  .header {
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .editor {
+    padding: 16px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+
+  .saveStatus {
+    bottom: 16px;
+    right: 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notesPage {
+    padding: 12px;
+  }
+
+  .header {
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+
+  .backButton {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .editor {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .deleteConfirmModal {
+    padding: 20px;
+    width: 95%;
   }
 }
