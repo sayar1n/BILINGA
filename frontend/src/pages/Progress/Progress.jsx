@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import styles from './Progress.module.scss';
+import { getUser } from '../../services/auth.service';
 
 const ProgressPage = () => {
-  // Данные пользователя
-  const userData = {
-    name: 'Alexandra Zavoykina',
-    email: 'alex@gmail.com',
+  // Состояние для хранения данных пользователя
+  const [userData, setUserData] = useState({
+    name: 'Пользователь',
+    email: 'email@example.com',
     avatar: '/avatar.jpg',
-    alt: 'AZ',
-  };
+    alt: 'U',
+  });
+
+  // Получаем данные пользователя при загрузке компонента
+  useEffect(() => {
+    const user = getUser();
+    if (user) {
+      setUserData({
+        name: user.username || 'Alexandra Zavoykina',
+        email: user.email || 'alex@gmail.com',
+        avatar: '/avatar.jpg',
+        alt: user.username ? user.username.substring(0, 2).toUpperCase() : 'U',
+      });
+    }
+  }, []);
 
   // Данные для прогресс-баров
   const progressData = [

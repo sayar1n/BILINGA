@@ -14,7 +14,8 @@ import Notifications from './pages/Notifications/Notifications';
 import Progress from './pages/Progress/Progress';
 import Account from './pages/Account/Account';
 import Rating from './pages/Rating/Rating';
-import MainFrameSet from './components/MainFrameset/MainFrameSet'; 
+import MainFrameSet from './components/MainFrameset/MainFrameSet';
+import LogoutHandler from './components/LogoutHandler/LogoutHandler';
 
 const AppRoutes = () => {
   return (
@@ -22,10 +23,14 @@ const AppRoutes = () => {
       <Routes>
         {/* Маршруты авторизации */}
         <Route path="/auth">
+          <Route index element={<Navigate to="/auth/login" replace />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
           <Route path="reset-password" element={<ResetPasswordPage />} />
         </Route>
+
+        {/* Маршрут для выхода */}
+        <Route path="/logout" element={<LogoutHandler />} />
 
         {/* Основной лейаут с обычным сайдбаром */}
         <Route path="/" element={<MainFrame />}>

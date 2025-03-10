@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import styles from './Account.module.scss';
+import { getUser, deleteAccount } from '../../services/auth.service';
 
 const Account = () => {
+  const navigate = useNavigate();
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -14,12 +17,30 @@ const Account = () => {
     confirmPassword: '',
     phone: '',
   });
+  
+  // Состояние для модального окна удаления аккаунта
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteConfirmation, setDeleteConfirmation] = useState('');
+  const [deleteError, setDeleteError] = useState('');
 
+  // Получаем данные пользователя при загрузке компонента
+  useEffect(() => {
+    const user = getUser();
+    if (user) {
+      setFormData(prevData => ({
+        ...prevData,
+        name: user.username || '',
+        email: user.email || ''
+      }));
+    }
+  }, []);
+
+  // Используем данные из formData для отображения
   const userData = {
-    name: 'Alexandra Zavoykina',
-    email: 'alex@gmail.com',
+    name: formData.name || 'Пользователь',
+    email: formData.email || 'email@example.com',
     avatar: '/avatar.jpg',
-    alt: 'AZ',
+    alt: formData.name ? formData.name.substring(0, 2).toUpperCase() : 'U',
   };
 
   const handleChange = (e) => {
@@ -28,6 +49,53 @@ const Account = () => {
       ...prev,
       [id]: value,
     }));
+  };
+
+  // Обработчик изменения поля подтверждения удаления
+  const handleDeleteConfirmationChange = (e) => {
+    setDeleteConfirmation(e.target.value);
+    setDeleteError('');
+  };
+
+  // Обработчик нажатия на кнопку "Удалить аккаунт"
+  const handleDeleteClick = () => {
+    setShowDeleteModal(true);
+  };
+
+  // Обработчик закрытия модального окна
+  const handleCloseModal = () => {
+    setShowDeleteModal(false);
+    setDeleteConfirmation('');
+    setDeleteError('');
+  };
+
+  // Обработчик подтверждения удаления аккаунта
+  const handleConfirmDelete = async () => {
+    if (deleteConfirmation !== 'Удалить') {
+      setDeleteError('Пожалуйста, введите "Удалить" для подтверждения');
+      return;
+    }
+
+    try {
+      const result = await deleteAccount();
+      if (result.success) {
+        // Проверяем, что пользователь действительно удален
+        const user = getUser();
+        if (user) {
+          console.error('Ошибка: пользователь все еще существует после удаления');
+          setDeleteError('Произошла ошибка при удалении аккаунта. Пожалуйста, попробуйте еще раз.');
+          return;
+        }
+        
+        // Перенаправляем на страницу входа
+        navigate('/auth/login');
+      } else {
+        setDeleteError(result.message || 'Произошла ошибка при удалении аккаунта');
+      }
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      setDeleteError('Произошла ошибка при удалении аккаунта');
+    }
   };
 
   const icons = {
@@ -116,7 +184,7 @@ const Account = () => {
         <div className={styles.userInfo}>
           <h2 className={styles.userName}>{userData.name}</h2>
           <p className={styles.userEmail}>{userData.email}</p>
-          <button className={styles.verifyButton}>
+          <button className={styles.verifyButton} onClick={handleDeleteClick}>
             <span className={styles.verifyIcon}>Х</span>
             <span>Удалить аккаунт</span>
           </button>
@@ -196,6 +264,46 @@ const Account = () => {
           Сохранить изменения
         </button>
       </form>
+
+      {/* Модальное окно подтверждения удаления */}
+      {showDeleteModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h3 className={styles.modalTitle}>Подтверждение удаления аккаунта</h3>
+            <p className={styles.modalText}>
+              Вы уверены, что хотите удалить свой аккаунт? Это действие нельзя отменить.
+              Все ваши данные будут удалены.
+            </p>
+            <p className={styles.modalText}>
+              Для подтверждения введите <strong>Удалить</strong>
+            </p>
+            <input
+              type="text"
+              className={styles.modalInput}
+              value={deleteConfirmation}
+              onChange={handleDeleteConfirmationChange}
+              placeholder="Введите 'Удалить'"
+            />
+            {deleteError && <p className={styles.modalError}>{deleteError}</p>}
+            <div className={styles.modalButtons}>
+              <button
+                type="button"
+                className={styles.modalCancelButton}
+                onClick={handleCloseModal}
+              >
+                Отмена
+              </button>
+              <button
+                type="button"
+                className={styles.modalDeleteButton}
+                onClick={handleConfirmDelete}
+              >
+                Удалить аккаунт
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

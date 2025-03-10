@@ -24,11 +24,17 @@ const LoginPage = () => {
     e.preventDefault();
     setError('');
     
+    if (!formData.username.trim() || !formData.password.trim()) {
+      setError('Пожалуйста, заполните все поля');
+      return;
+    }
+    
     try {
       await login(formData.username, formData.password);
       navigate('/'); // Перенаправление на главную страницу после успешного входа
     } catch (err) {
-      setError(err.message || 'Произошла ошибка при входе');
+      console.error('Login error in component:', err);
+      setError(typeof err === 'string' ? err : 'Неверное имя пользователя или пароль');
     }
   };
 
