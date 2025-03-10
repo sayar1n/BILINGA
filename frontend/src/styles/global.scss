@@ -2,15 +2,15 @@
 
 :root {
   // Основные цвета
-  --color-primary: #9DC36B;
-  --color-primary-light: #D3EBB3;
-  --color-primary-lighter: #E8F5D8;
+  --color-primary: #9dc36b;
+  --color-primary-light: #d3ebb3;
+  --color-primary-lighter: #e8f5d8;
   --color-primary-dark: #698a3d;
 
   // Акцентные цвета
-  --color-accent: #FF9B7B;
-  --color-accent-light: #FFD0C2;
-  --color-accent-lighter: #FFE8E0;
+  --color-accent: #ff9b7b;
+  --color-accent-light: #ffd0c2;
+  --color-accent-lighter: #ffe8e0;
   --color-accent-dark: #ff6433;
   --color-accent-hover: #ff7f57;
 
@@ -19,7 +19,7 @@
   --color-surface: #ffffff;
   --color-surface-light: #fafafa;
   --color-surface-variant: #f8f8f8;
-  --color-border: #E8E8E8;
+  --color-border: #e8e8e8;
   --color-disabled: #e0e0e0;
 
   // Текстовые цвета
@@ -38,36 +38,43 @@
   // Специальные цвета
   --color-auth-background: #a4a19c;
   --color-input-bg: rgba(255, 255, 255, 0.6);
-  --color-info-background: #1E3A8A;
-  --color-info-button: #1E3A8A;
+  --color-info-background: #1e3a8a;
+  --color-info-button: #1e3a8a;
   --color-auth-border: #222222;
   --color-auth-shadow: #ffffff;
+
+  // прогресс бары
+  --color-progressbar: #60c060;
+  --color-progressbar-bg: #d9e5d9;
+
+  // аккаунт
+  --color-account-accent: #defa5f;
 }
 
 // Миксины для темной темы (подготовка)
 @mixin dark-theme {
-  --color-primary: #7DA139;
-  --color-primary-light: #9DC36B;
-  --color-primary-lighter: #B8D48C;
-  --color-primary-dark: #5C7A2A;
+  --color-primary: #7da139;
+  --color-primary-light: #9dc36b;
+  --color-primary-lighter: #b8d48c;
+  --color-primary-dark: #5c7a2a;
 
-  --color-accent: #FF7F57;
-  --color-accent-light: #FF9B7B;
-  --color-accent-lighter: #FFB7A0;
-  --color-accent-dark: #FF6433;
+  --color-accent: #ff7f57;
+  --color-accent-light: #ff9b7b;
+  --color-accent-lighter: #ffb7a0;
+  --color-accent-dark: #ff6433;
   --color-accent-hover: #ff6433;
 
-  --color-background: #1A1A1A;
-  --color-surface: #2D2D2D;
+  --color-background: #1a1a1a;
+  --color-surface: #2d2d2d;
   --color-surface-light: #404040;
   --color-surface-variant: #333333;
   --color-border: #404040;
   --color-disabled: #4d4d4d;
 
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #CCCCCC;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cccccc;
   --color-text-tertiary: #999999;
-  --color-text-dark: #FFFFFF;
+  --color-text-dark: #ffffff;
 
   --color-shadow: rgba(0, 0, 0, 0.3);
   --color-shadow-variant: rgba(0, 0, 0, 0.25);
@@ -95,18 +102,42 @@ body {
   line-height: 1.5;
 }
 
-h1, h2, h3, h4, h5, h6, strong, b, .logo {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b,
+.logo {
   font-family: 'Libra-Sans-Bold', sans-serif;
   font-weight: normal;
 }
 
 // Вспомогательные классы для цветов
-.text-primary { color: var(--color-text-primary); }
-.text-secondary { color: var(--color-text-secondary); }
-.text-tertiary { color: var(--color-text-tertiary); }
-.text-dark { color: var(--color-text-dark); }
+.text-primary {
+  color: var(--color-text-primary);
+}
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+.text-tertiary {
+  color: var(--color-text-tertiary);
+}
+.text-dark {
+  color: var(--color-text-dark);
+}
 
-.bg-primary { background-color: var(--color-primary); }
-.bg-surface { background-color: var(--color-surface); }
-.bg-background { background-color: var(--color-background); }
-.bg-disabled { background-color: var(--color-disabled); }
+.bg-primary {
+  background-color: var(--color-primary);
+}
+.bg-surface {
+  background-color: var(--color-surface);
+}
+.bg-background {
+  background-color: var(--color-background);
+}
+.bg-disabled {
+  background-color: var(--color-disabled);
+}

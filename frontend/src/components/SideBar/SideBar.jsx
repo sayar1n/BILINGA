@@ -75,7 +75,7 @@ const SideBar = () => {
 
       {/* Дополнительная навигация */}
       <nav className={styles.secondaryNav}>
-        <NavLink to="/settings" className={styles.navLink}>Настройки</NavLink>
+        <NavLink to="/settings/account" className={styles.navLink}>Настройки</NavLink>
         <NavLink to="/support" className={styles.navLink}>Поддержка</NavLink>
         <NavLink to="/logout" className={styles.navLink}>Выйти</NavLink>
       </nav>
