@@ -1,0 +1,263 @@
+.battlePassContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: calc(100% + 48px);
+    height: calc(100% + 48px);
+    background: linear-gradient(135deg, #4a90e2 0%, #5e4be1 100%);
+    border-radius: 12px;
+    padding: 24px;
+    margin: -24px;
+    color: var(--color-auth-shadow);
+  }
+  
+  .battlePassTitle {
+    position: relative;
+    top: -24px;
+    left: -24px;
+    right: -24px;
+    width: calc(100% + 48px);
+    height: 90px;
+  
+    z-index: 10;
+    border-radius: 12px 12px 0 0;
+    background-color: var(--color-rating-header-bg);
+  
+    h1 {
+      color: var(--color-rating-header-text);
+      text-align: center;
+      font-size: 40px;
+      font-weight: bolder;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      height: 100%;
+    }
+  }
+  
+  .sectionsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, auto);
+    gap: 20px;
+  
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+  }
+  
+  .levelsSection {
+    grid-column: 1;
+    grid-row: 1/2;
+    background-color: var(--color-rating-border-light);
+    border-radius: 8px;
+    padding: 16px;
+  
+    h2 {
+      color: var(--color-auth-shadow);
+    }
+  }
+  
+  .levelsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .progressArea {
+    width: 100%;
+  }
+  
+  .ratingSection {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    background-color: var(--color-rating-border-light);
+    border-radius: 8px;
+    padding: 16px;
+  
+    h2 {
+      color: var(--color-auth-shadow);
+    }
+  
+    @media (max-width: 768px) {
+      grid-column: 1;
+      grid-row: 3;
+    }
+  }
+  
+  .tasksSection {
+    grid-column: 1;
+    grid-row: 2/5;
+    background-color: var(--color-rating-border-light);
+    border-radius: 8px;
+    padding: 16px;
+  
+    h2 {
+      color: var(--color-auth-shadow);
+    }
+  
+    @media (max-width: 768px) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+  }
+  
+  .sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+  
+  // Стили секции уровней
+  .progressBar {
+    height: 12px;
+    background-color: var(--color-rating-border);
+    border-radius: 6px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  
+  .progressBarFill {
+    height: 100%;
+    width: 40%;
+    background-color: var(--color-account-accent);
+    border-radius: 6px;
+  }
+  
+  .levelIndicator {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+    font-size: 14px;
+  
+    span {
+      margin-right: 16px;
+    }
+  }
+  
+  .levelSelector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .levelButton {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-rating-border);
+    border: none;
+    border-radius: 8px;
+    color: var(--color-auth-shadow);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  
+    &.active {
+      background-color: var(--color-account-accent);
+      color: var(--color-text-primary);
+    }
+  }
+  
+  .navButton {
+    width: 25px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-rating-border-light);
+    border: none;
+    border-radius: 12px;
+    color: var(--color-auth-shadow);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  
+    &:hover {
+      background-color: var(--color-rating-border);
+    }
+  }
+  
+  .reward {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rewardText {
+    font-size: 14px;
+  }
+  
+  // Стили секции рейтинга
+  .ratingTable {
+    width: 100%;
+    border-collapse: collapse;
+  
+    th,
+    td {
+      padding: 8px;
+      text-align: center;
+    }
+  
+    th {
+      background-color: var(--color-rating-border-light);
+      font-weight: 500;
+    }
+  
+    tr {
+      background-color: var(--color-rating-border-light);
+      border-bottom: 1px solid var(--color-rating-border-light);
+    }
+  }
+  
+  // Стили секции заданий
+  .tasksList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .taskItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .taskInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .taskMarker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+  
+    &.important {
+      background-color: var(--color-rating-error);
+    }
+  
+    &.regular {
+      background-color: var(--color-rating-success);
+    }
+  
+    &.reward {
+      background-color: var(--color-rating-warning);
+    }
+  }
+  
+  .taskText {
+    font-size: 14px;
+  }
+  
+  .taskStatus {
+    font-size: 12px;
+    padding: 4px 8px;
+    background-color: var(--color-rating-border);
+    border-radius: 4px;
+  }
+  

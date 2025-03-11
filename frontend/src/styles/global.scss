@@ -49,6 +49,24 @@
 
   // аккаунт
   --color-account-accent: #defa5f;
+  --color-account-addPhoto: #d7e5f7;
+
+  // рейтинг
+  // --color-rating-bg: linear-gradient(#5295ef, #655af6, #506def, #6c89f1);
+  --color-rating-header-bg: #546dd4;
+  --color-rating-header-text: #8daaf8;
+  --color-rating-warning: #ffcc00;
+  --color-rating-error: #ff5757;
+  --color-rating-success: #4cd964;
+  --color-rating-border-light: #ffffff1a;
+  --color-rating-border: #ffffff33;
+
+  // оповещения
+  --color-notifications-accent: #1da1f2;
+  --color-notifications-info-bg: #d6e5f5;
+  --color-notifications-switch-bg: #0eb08b;
+  --color-notifications-connected: #6ac05c;
+  --color-time-border: #dadada;
 }
 
 // Миксины для темной темы (подготовка)

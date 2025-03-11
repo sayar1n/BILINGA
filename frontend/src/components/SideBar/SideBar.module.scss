@@ -17,14 +17,21 @@
   color: var(--color-primary);
   text-align: center;
   margin-bottom: 30px;
-  text-shadow: 
-    1px 1px 0 var(--color-border),
-    0 0 5px var(--color-primary),
+  text-shadow: 1px 1px 0 var(--color-border), 0 0 5px var(--color-primary),
     0 0 5px var(--color-primary);
   animation: glow 1.5s infinite alternate;
 }
 
-.mainNav, .secondaryNav {
+.settingsIcon {
+  border: 1px solid red;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.mainNav,
+.secondaryNav {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -66,14 +73,14 @@
   &:active {
     color: var(--color-primary-dark);
   }
-  
+
   &.active {
     color: var(--color-accent);
-    
+
     &:hover {
       color: var(--color-accent-hover);
     }
-    
+
     &:active {
       color: var(--color-accent-dark);
     }
@@ -123,15 +130,11 @@
 
 @keyframes glow {
   from {
-    text-shadow: 
-      1px 1px 0 var(--color-border),
-      0 0 5px var(--color-primary),
+    text-shadow: 1px 1px 0 var(--color-border), 0 0 5px var(--color-primary),
       0 0 5px var(--color-primary);
   }
   to {
-    text-shadow: 
-      1px 1px 0 var(--color-border),
-      0 0 10px var(--color-primary),
+    text-shadow: 1px 1px 0 var(--color-border), 0 0 10px var(--color-primary),
       0 0 15px var(--color-primary);
   }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProgressBar from '../../components/ProgressBar/ProgressBar'; 
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import styles from './Progress.module.scss';
 
 const ProgressPage = () => {

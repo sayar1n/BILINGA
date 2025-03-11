@@ -21,24 +21,6 @@ const SideBar = () => {
     setShowSettingsMenu(!showSettingsMenu);
   };
 
-  // СОВЕТ: нужно мемоизировать компонент Nav так как происходят лишние рендеры
-  // функции в обработчиках событий вызывают лишние рендеры
-  // каждый раз при изменении showGameSubmenu происходит рендер
-
-  // пример оптимизации отрисовки путей
-  // Основные маршруты
-  // const mainRoutes = [
-  //   { id: 'main', path: '/main', label: 'Главная' },
-  //   // остальные пути
-  //   // Игры с подменю - обрабатываются отдельно
-  // ];
-  // // Дополнительные маршруты (футер)
-  // const secondaryRoutes = [
-  //   { id: 'settings', path: '/settings', label: 'Настройки' },
-  //   // остальные пути
-  // ];
-  // потом просто делаем .map и код становится более читаемым
-
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>BILINGA</div>
