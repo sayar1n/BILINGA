@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using backend.Data;
 using backend.Models;
+
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
@@ -29,9 +30,10 @@ namespace backend.Controllers
             {
                 return NotFound();
             }
+
             return Ok(user);
         }
-        
+
         [HttpPatch("{id}")]
         public IActionResult Update(int id, [FromBody] UpdateUser updatedUser)
         {
@@ -40,22 +42,13 @@ namespace backend.Controllers
             {
                 return NotFound();
             }
-            
-            if (!string.IsNullOrEmpty(updatedUser.Email))
-            {
-                user.Email = updatedUser.Email;
-            }
-            if (!string.IsNullOrEmpty(updatedUser.Username))
-            {
-                user.Username = updatedUser.Username;
-            }
+
+            user.Email = updatedUser.Email;
+            user.Username = updatedUser.Username;
+            user.Score = updatedUser.Score;
             if (!string.IsNullOrEmpty(updatedUser.Password))
             {
                 user.Password = BCrypt.Net.BCrypt.HashPassword(updatedUser.Password);
-            }
-            if (!string.IsNullOrEmpty(updatedUser.PhoneNumber))
-            {
-                user.PhoneNumber = updatedUser.PhoneNumber;
             }
 
             _context.SaveChanges();

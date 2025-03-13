@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using backend;
 using backend.Services;
 using backend.Data;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +17,16 @@ DotNetEnv.Env.Load();
 var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
 var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
 var secretKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
+var botToken = Environment.GetEnvironmentVariable("TG_TOKEN");
 
 if (string.IsNullOrWhiteSpace(issuer) || string.IsNullOrWhiteSpace(audience) || string.IsNullOrWhiteSpace(secretKey))
 {
     throw new InvalidOperationException("Переменные окружения JWT_ISSUER, JWT_AUDIENCE или JWT_SECRET_KEY не заданы или пусты.");
+}
+
+if (string.IsNullOrWhiteSpace(botToken))
+{
+    throw new InvalidOperationException("Переменная окружения TG_TOKEN не задана.");
 }
 
 builder.Services.AddSingleton(new JwtService(secretKey, issuer, audience));
@@ -42,9 +49,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<ArticleService>();
 
-// Swagger
+builder.Services.AddSingleton<TGbot>(provider => new TGbot(botToken));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -85,23 +92,21 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
+var bot = app.Services.GetRequiredService<TGbot>();
+Task.Run(() => bot.Start());
 
-// Настройка HTTP-конвейера
 if (app.Environment.IsDevelopment())
 {
-    // Настройка Swagger в режиме разработки
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "BILINGA API v1");
-        options.RoutePrefix = string.Empty; // Открыть Swagger на корневом URL
+        options.RoutePrefix = string.Empty; 
     });
 }
 
-// Включение HTTPS-редиректов
 app.UseHttpsRedirection();
 
-// Регистрация маршрутов контроллеров
 app.MapControllers();
 
 app.Run();

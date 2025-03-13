@@ -61,6 +61,7 @@ namespace backend.Controllers
             {
                 Username = request.Username,
                 Email = request.Email,
+                Score = 0,
                 Password = BCrypt.Net.BCrypt.HashPassword(request.Password)
             };
 
