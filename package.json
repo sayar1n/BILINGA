@@ -1,0 +1,16 @@
+{
+  "name": "bilinga",
+  "version": "1.0.0",
+  "description": "Bilinga - Language Learning Platform",
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && dotnet watch run",
+    "start:frontend": "cd frontend && set PORT=3000 && npm start",
+    "install:all": "npm install && cd frontend && npm install",
+    "build": "cd frontend && npm run build"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5"
+  }
+} 

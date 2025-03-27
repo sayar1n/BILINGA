@@ -1,89 +1,255 @@
-.dictionaryPage {
-  padding: 32px;
-  max-width: 800px;
+.notificationsContainer {
+  position: relative;
+  width: 100%;
   margin: 0 auto;
 }
 
-.wordHeader {
+.blueHeader {
+  position: relative;
+  top: -24px;
+  left: -24px;
+  right: -24px;
+  width: calc(100% + 48px);
+  height: 90px;
+  z-index: 10;
+  border-radius: 12px 12px 0 0;
+  background-color: var(--color-notifications-accent);
+}
+
+.contentWrapper {
+  position: relative;
+  padding: 0 20px 20px;
+  margin-top: -20px;
+}
+
+.infoMessage {
+  background-color: var(--color-notifications-info-bg);
+  border-radius: 8px;
+  padding: 4px 16px;
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.word {
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin: 0;
-}
-
-.partOfSpeech {
-  font-size: 16px;
-  color: var(--color-text-tertiary);
-}
-
-.transcription {
-  font-size: 16px;
-  color: var(--color-text-tertiary);
-  margin-bottom: 24px;
-}
-
-.translation {
-  font-size: 20px;
-  color: var(--color-text-primary);
-  margin-bottom: 32px;
-}
-
-.examples {
-  border-top: 1px solid var(--color-border);
-  padding-top: 24px;
-  margin-bottom: 32px;
-
-  h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin: 0 0 24px;
-  }
-}
-
-.example {
-  margin-bottom: 24px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.englishExample {
-  font-size: 16px;
-  color: var(--color-text-primary);
-  margin: 0 0 8px;
-  line-height: 1.5;
-}
-
-.russianExample {
-  font-size: 16px;
+  align-items: center;
+  margin: 16px;
+  font-size: 14px;
   color: var(--color-text-secondary);
-  margin: 0;
-  line-height: 1.5;
-}
 
-.synonyms {
-  border-top: 1px solid var(--color-border);
-  padding-top: 24px;
-
-  h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin: 0 0 16px;
+  span {
+    display: flex;
   }
 }
 
-.synonymsList {
-  font-size: 16px;
+.infoIcon {
+  margin-right: 10px;
+  color: var(--color-notifications-accent);
+  font-weight: bold;
+}
+
+.notificationBlock {
+  background-color: var(--color-auth-shadow);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px var(--color-shadow);
+}
+
+.notificationBlockLastLogin {
+  background-color: var(--color-auth-shadow);
+  box-shadow: 0 2px 6px var(--color-shadow);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  & > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.actionButtonsLastLogin {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.blockHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.blockHeaderColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  h2 {
+    margin-bottom: 8px;
+  }
+}
+
+.blockTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
   color: var(--color-text-primary);
-  line-height: 1.5;
+}
+
+.connectedTag {
+  background-color: var(--color-notifications-connected);
+  color: var(--color-auth-shadow);
+  font-size: 12px;
+  padding: 4px 8px;
+  margin-left: 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.notificationSettings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.settingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.settingColumn {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.settingControl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.timeValue {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid var(--color-time-border);
+  width: 80px;
+  height: 26px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.loginInfo {
+  margin: 0 0 15px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.telegramLoginInput {
+  display: flex;
+  flex-direction: row;
+  width: 65%;
+
+  .inputLabel {
+    display: flex;
+    align-items: center;
+    width: 50%;
+
+    .telegramIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-notifications-accent);
+      border-radius: 50%;
+      margin-right: 8px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    .labelText {
+      font-size: 14px;
+      color: var(--color-text-primary);
+      font-weight: 500;
+    }
+  }
+
+  .telegramInput {
+    width: 240px;
+    height: 30px;
+    padding: 4px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #1da1f2;
+    }
+
+    &::placeholder {
+      color: #b0b0b0;
+    }
+  }
+}
+
+.telegramIcon,
+.keyIcon,
+.logoutIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.saveButton {
+  background-color: var(--color-notifications-accent);
+  color: var(--color-auth-shadow);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-start;
 }

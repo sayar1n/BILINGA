@@ -48,13 +48,13 @@ const login = async (username, password) => {
         if (!user) {
             console.log('Пользователь не найден:', username);
             console.log('Список пользователей:', users);
-            throw { message: 'Пользователь не найден. Проверьте логин или зарегистрируйтесь.' };
+            throw new Error('Пользователь не найден. Проверьте логин или зарегистрируйтесь.');
         }
         
         // Проверяем пароль
         if (user.password !== password) {
             console.log('Неверный пароль для пользователя:', username);
-            throw { message: 'Неверный пароль' };
+            throw new Error('Неверный пароль');
         }
         
         // Делаем запрос к API
@@ -114,7 +114,7 @@ const register = async (username, email, password) => {
         );
         
         if (userExists) {
-            throw { message: 'Пользователь с таким именем или email уже существует' };
+            throw new Error('Пользователь с таким именем или email уже существует');
         }
         
         // Делаем запрос к API
@@ -146,7 +146,7 @@ const register = async (username, email, password) => {
             throw error.message;
         }
         if (error.response?.status === 409) {
-            throw 'Пользователь с таким именем уже существует';
+            throw new Error('Пользователь с таким именем уже существует');
         }
         throw error.response?.data || 'Произошла ошибка при регистрации. Пожалуйста, попробуйте позже.';
     }

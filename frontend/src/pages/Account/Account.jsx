@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import styles from './Account.module.scss';
@@ -12,7 +12,7 @@ const Account = () => {
   
   // Состояние для отображаемых данных пользователя (верхняя часть страницы)
   const [displayUserData, setDisplayUserData] = useState({
-    name: 'Пользователь',
+    username: 'Пользователь',
     email: 'email@example.com',
     avatar: '/avatar.jpg',
     alt: 'U',
@@ -20,7 +20,7 @@ const Account = () => {
   
   // Состояние для редактируемых данных пользователя (форма)
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     currentPassword: '',
     newPassword: '',
@@ -33,20 +33,15 @@ const Account = () => {
   const [deleteConfirmation, setDeleteConfirmation] = useState('');
   const [deleteError, setDeleteError] = useState('');
 
-  // Получаем данные пользователя при загрузке компонента
-  useEffect(() => {
-    loadUserData();
-  }, []);
-  
   // Функция для загрузки данных пользователя
-  const loadUserData = () => {
+  const loadUserData = useCallback(() => {
     const user = getUser();
     console.log('Загружены данные пользователя:', user);
     
     if (user) {
       // Устанавливаем отображаемые данные
       const displayData = {
-        name: user.username || 'Пользователь',
+        username: user.username || 'Пользователь',
         email: user.email || 'email@example.com',
         avatar: '/avatar.jpg',
         alt: user.username ? user.username.substring(0, 2).toUpperCase() : 'U',
@@ -56,18 +51,22 @@ const Account = () => {
       setDisplayUserData(displayData);
       
       // Устанавливаем данные формы
-      const formValues = {
-        ...formData,
-        name: user.username || '',
+      setFormData(prevData => ({
+        ...prevData,
+        username: user.username || '',
         email: user.email || ''
-      };
+      }));
       
-      console.log('Устанавливаем данные формы:', formValues);
-      setFormData(formValues);
+      console.log('Данные формы обновлены');
     } else {
       console.log('Пользователь не найден, используем данные по умолчанию');
     }
-  };
+  }, []);
+
+  // Получаем данные пользователя при загрузке компонента
+  useEffect(() => {
+    loadUserData();
+  }, [loadUserData]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -215,7 +214,7 @@ const Account = () => {
       // Обновляем пароль пользователя
       const updatedUser = {
         ...user,
-        username: formData.name || user.username,
+        username: formData.username || user.username,
         email: formData.email || user.email,
         password: formData.newPassword
       };
@@ -263,10 +262,10 @@ const Account = () => {
     
     // Обновляем отображаемые данные пользователя
     const newDisplayData = {
-      name: formData.name || 'Пользователь',
+      username: formData.username || 'Пользователь',
       email: formData.email || 'email@example.com',
       avatar: '/avatar.jpg',
-      alt: formData.name ? formData.name.substring(0, 2).toUpperCase() : 'U',
+      alt: formData.username ? formData.username.substring(0, 2).toUpperCase() : 'U',
     };
     
     console.log('Обновляем отображаемые данные:', newDisplayData);
@@ -278,7 +277,7 @@ const Account = () => {
       if (user) {
         const updatedUser = {
           ...user,
-          username: formData.name,
+          username: formData.username,
           email: formData.email
         };
         
@@ -335,7 +334,7 @@ const Account = () => {
           />
         </div>
         <div className={styles.userInfo}>
-          <h2 className={styles.userName}>{displayUserData.name}</h2>
+          <h2 className={styles.userName}>{displayUserData.username}</h2>
           <p className={styles.userEmail}>{displayUserData.email}</p>
           <button className={styles.verifyButton} onClick={handleDeleteClick}>
             <span className={styles.verifyIcon}>Х</span>
@@ -348,10 +347,10 @@ const Account = () => {
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         <div className={styles.formGrid}>
           <Input
-            id='name'
+            id='username'
             label='Имя'
             placeholder='Введите новый никнейм'
-            value={formData.name}
+            value={formData.username}
             onChange={handleChange}
             icon={icons.name}
           />

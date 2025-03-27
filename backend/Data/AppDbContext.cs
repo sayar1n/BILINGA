@@ -12,5 +12,7 @@ namespace backend.Data
         public DbSet<Note> Notes { get; set; }
         
         public DbSet<Article> Articles { get; set; }
+        
+        public DbSet<Dictionary> Dictionary { get; set; }
     }
 }
