@@ -305,6 +305,33 @@ const userExists = (username, email, password = null) => {
     }
 };
 
+const resetPassword = async (email) => {
+    try {
+        // Получаем список пользователей из localStorage
+        const usersStr = localStorage.getItem('users');
+        if (!usersStr) {
+            throw new Error('Пользователь с таким email не найден');
+        }
+
+        const users = JSON.parse(usersStr);
+        const user = users.find(u => u.email === email);
+
+        if (!user) {
+            throw new Error('Пользователь с таким email не найден');
+        }
+
+        // В реальном приложении здесь был бы запрос к API
+        // Сейчас просто возвращаем успешный результат
+        return {
+            success: true,
+            message: 'Пароль отправлен на ваш email. После входа рекомендуется сменить пароль.'
+        };
+    } catch (error) {
+        console.error('Reset password error:', error);
+        throw new Error(error.message || 'Произошла ошибка при восстановлении пароля');
+    }
+};
+
 export {
     login,
     register,
@@ -313,5 +340,6 @@ export {
     isAuthenticated,
     getUser,
     deleteAccount,
-    userExists
+    userExists,
+    resetPassword
 }; 

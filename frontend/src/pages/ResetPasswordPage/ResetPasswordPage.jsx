@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Blob from '../../components/Blobs/Blob';
 import styles from './ResetPasswordPage.module.scss';
+import { resetPassword } from '../../services/auth.service';
 
 const ResetPasswordPage = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleResetPassword = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Здесь будет логика восстановления пароля
-    console.log('Попытка восстановления пароля');
+    setError('');
+    setSuccess('');
+    setIsLoading(true);
+
+    // Простая валидация email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Пожалуйста, введите корректный email');
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const result = await resetPassword(email);
+      setSuccess(result.message);
+      setTimeout(() => {
+        navigate('/auth/login');
+      }, 3000);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -23,19 +49,31 @@ const ResetPasswordPage = () => {
       <div className={styles.loginWrapper}>
         <div className={styles.loginContainer}>
           <h2>Восстановление пароля</h2>
-          <form onSubmit={handleResetPassword}>
+          <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               <label htmlFor="email">Email</label>
-              <input 
-                type="email" 
-                id="email" 
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Введите ваш email"
-                required 
+                disabled={isLoading}
+                required
               />
             </div>
-            <button className={styles.btn}>Восстановить пароль</button>
+
+            {error && <div className={styles.error}>{error}</div>}
+            {success && <div className={styles.success}>{success}</div>}
+
+            <button className={styles.btn} disabled={isLoading}>
+              {isLoading ? 'Отправка...' : 'Восстановить пароль'}
+            </button>
+
             <div className={styles.forgotPassword}>
-              <span onClick={() => navigate('/login')}>Вернуться к входу</span>
+              <span onClick={() => navigate('/auth/login')}>
+                Вернуться к входу
+              </span>
             </div>
           </form>
         </div>
