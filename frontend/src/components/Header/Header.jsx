@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { gamesData } from '../../data/games/games';
 import { materialsData } from '../../data/materials/matireals';
 import { getUser } from '../../services/auth.service';
+import { FiSun, FiMoon } from 'react-icons/fi';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -12,19 +14,23 @@ const Header = () => {
     materials: []
   });
   const [username, setUsername] = useState('Username');
+  const [isDarkTheme, setIsDarkTheme] = useState(localStorage.getItem('theme') === 'dark');
   const searchContainerRef = useRef(null);
 
-  // Загружаем имя пользователя при монтировании компонента
   useEffect(() => {
     loadUserData();
     
-    // Добавляем слушатель события для обновления имени пользователя
     window.addEventListener('storage', handleStorageChange);
     
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light');
+    localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+  }, [isDarkTheme]);
   
   // Функция для загрузки данных пользователя
   const loadUserData = () => {
@@ -34,11 +40,14 @@ const Header = () => {
     }
   };
   
-  // Обработчик изменения localStorage
   const handleStorageChange = (e) => {
     if (e.key === 'user') {
       loadUserData();
     }
+  };
+
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
   };
 
   useEffect(() => {
@@ -135,6 +144,18 @@ const Header = () => {
       </div>
 
       <div className={styles.userSection}>
+        <Link to="/games/ai" className={styles.tryAiButton}>
+          Чат с ИИ
+        </Link>
+
+        <button 
+          className={styles.themeToggle} 
+          onClick={toggleTheme}
+          aria-label="Переключить тему"
+        >
+          {isDarkTheme ? <FiSun /> : <FiMoon />}
+        </button>
+
         <button className={styles.notificationButton}>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16 7C16 5.4087 15.3679 3.88258 14.2426 2.75736C13.1174 1.63214 11.5913 1 10 1C8.4087 1 6.88258 1.63214 5.75736 2.75736C4.63214 3.88258 4 5.4087 4 7C4 14 1 16 1 16H19C19 16 16 14 16 7Z" stroke="#666666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

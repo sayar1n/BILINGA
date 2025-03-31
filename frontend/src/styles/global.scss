@@ -14,6 +14,9 @@
   --color-accent-dark: #ff6433;
   --color-accent-hover: #ff7f57;
 
+  // Цвета успеха
+  --color-success-dark: #4ca64c;
+
   // Нейтральные цвета
   --color-background: #f5f5f5;
   --color-surface: #ffffff;
@@ -49,14 +52,23 @@
 
   // аккаунт
   --color-account-accent: #defa5f;
+
+  // уведомления
+  --color-notifications-accent: #1e3a8a;
+  --color-notifications-info-bg: rgba(30, 58, 138, 0.1);
+  --color-notifications-connected: #60c060;
+  --color-time-border: #e0e0e0;
+  --color-action-button-bg: #f2f2f2;
+  --color-telegram-input-border: #e0e0e0;
+  --color-telegram-input-focus: #1da1f2;
+  --color-telegram-placeholder: #b0b0b0;
 }
 
-// Миксины для темной темы (подготовка)
 @mixin dark-theme {
-  --color-primary: #7da139;
-  --color-primary-light: #9dc36b;
-  --color-primary-lighter: #b8d48c;
-  --color-primary-dark: #5c7a2a;
+  --color-primary: #a14939;
+  --color-primary-light: #c3716b;
+  --color-primary-lighter: #d4918c;
+  --color-primary-dark: #7a332a;
 
   --color-accent: #ff7f57;
   --color-accent-light: #ff9b7b;
@@ -64,9 +76,11 @@
   --color-accent-dark: #ff6433;
   --color-accent-hover: #ff6433;
 
+  --color-success-dark: #853d3d;
+
   --color-background: #1a1a1a;
   --color-surface: #2d2d2d;
-  --color-surface-light: #404040;
+  --color-surface-light: #ececec;
   --color-surface-variant: #333333;
   --color-border: #404040;
   --color-disabled: #4d4d4d;
@@ -83,6 +97,32 @@
 
   --color-auth-background: #2d2d2d;
   --color-input-bg: rgba(0, 0, 0, 0.2);
+  --color-info-background: #8a1e4b;
+  --color-info-button: #8a1e4b;
+  --color-auth-border: #222222;
+  --color-auth-shadow: #333333;
+
+  // прогресс бары
+  --color-progressbar: #c06660;
+  --color-progressbar-bg: #e5e0d9;
+
+  // аккаунт
+  --color-account-accent: #fab25f;
+
+  // уведомления
+  --color-notifications-accent: #8a1e4b;
+  --color-notifications-info-bg: rgba(138, 30, 75, 0.1);
+  --color-notifications-connected: #c06660;
+  --color-time-border: #404040;
+  --color-action-button-bg: #333333;
+  --color-telegram-input-border: #404040;
+  --color-telegram-input-focus: #c06660;
+  --color-telegram-placeholder: #666666;
+}
+
+// Применяем темную тему
+[data-theme="dark"] {
+  @include dark-theme;
 }
 
 // Базовые стили

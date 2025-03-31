@@ -169,7 +169,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  background-color: #f2f2f2;
+  background-color: var(--color-action-button-bg);
   border: none;
   border-radius: 6px;
   padding: 4px 12px;
@@ -216,19 +216,20 @@
     width: 240px;
     height: 30px;
     padding: 4px 12px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--color-telegram-input-border);
     border-radius: 4px;
     font-size: 14px;
-    color: #333;
+    color: var(--color-text-primary);
+    background-color: var(--color-surface);
     outline: none;
     transition: border-color 0.2s;
 
     &:focus {
-      border-color: #1da1f2;
+      border-color: var(--color-telegram-input-focus);
     }
 
     &::placeholder {
-      color: #b0b0b0;
+      color: var(--color-telegram-placeholder);
     }
   }
 }
