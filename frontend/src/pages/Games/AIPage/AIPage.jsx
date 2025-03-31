@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AIPage.module.scss';
 
 const AIPage = () => {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -113,8 +115,30 @@ const AIPage = () => {
     }
   };
 
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   return (
     <div className={styles.container}>
+      <div className={styles.backButton} onClick={handleBackClick}>
+        <svg
+          data-slot="icon"
+          fill="none"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
+          ></path>
+        </svg>
+      </div>
+
       <div className={styles.chatContainer} ref={chatContainerRef}>
         {messages.map((message, index) => (
           <div
@@ -133,7 +157,12 @@ const AIPage = () => {
           className={styles.input}
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              handleSendMessage();
+            }
+          }}
           placeholder="Введите сообщение..."
           rows={1}
           disabled={isLoading}
