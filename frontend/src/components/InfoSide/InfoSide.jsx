@@ -41,7 +41,6 @@ const InfoSide = ({ item, type }) => {
   );
 };
 
-// Добавляем значения по умолчанию для props
 InfoSide.defaultProps = {
   type: 'games'
 };
