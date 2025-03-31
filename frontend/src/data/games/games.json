@@ -17,17 +17,18 @@
       "level": "A1",
       "description": "Изучайте английский язык с помощью интерактивных карточек. Переворачивайте карточки, чтобы увидеть перевод и полезные ассоциации для запоминания.",
       "type": "games",
-      "gameRoute": "/games/cards/"
+      "gameRoute": "/games/cards"
     },
     {
       "id": 2,
-      "title": "Лесные тайны",
-      "author": "Forest Studio",
+      "title": "Загадки",
+      "author": "The Riddler",
       "image": "https://via.placeholder.com/200x250",
       "tags": ["Соло", "Игры(Все)"],
-      "level": "A2",
-      "description": "Разгадывайте загадки волшебного леса, изучая новые слова и грамматику. Подходит для базового уровня английского.",
-      "type": "games"
+      "level": "A1",
+      "description": "Отгадывайте загадки на русском и английском",
+      "type": "games",
+      "gameRoute": "/games/riddles"
     },
     {
       "id": 3,

@@ -14,7 +14,7 @@ const BlockZone = () => {
   }, []);
 
   const handleSetClick = (set) => {
-    navigate(`/games/cards/${set.id}`);
+    navigate(`${set.id}`);
   };
 
   return (

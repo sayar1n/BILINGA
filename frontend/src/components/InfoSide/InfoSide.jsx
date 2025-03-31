@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './InfoSide.module.scss';
 
 const InfoSide = ({ item, type }) => {
+  const navigate = useNavigate();
+  
   // Если item не передан, показываем заглушку
   const defaultItem = {
     title: 'Выберите игру или материал',
@@ -13,8 +16,8 @@ const InfoSide = ({ item, type }) => {
   const buttonText = type === 'materials' ? 'Читать сейчас' : 'Играть сейчас';
 
   const handleAction = () => {
-    if (item && item.onPlay) {
-      item.onPlay();
+    if (currentItem.gameRoute) {
+      navigate(currentItem.gameRoute);
     }
   };
 

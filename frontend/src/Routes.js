@@ -17,6 +17,7 @@ import Rating from './pages/Rating/Rating';
 import MainFrameSet from './components/MainFrameset/MainFrameSet';
 import LogoutHandler from './components/LogoutHandler/LogoutHandler';
 import CardsGame from './pages/Games/CardsGame/CardsGame';
+import Riddles from './pages/Games/Riddles/Riddles';
 
 const AppRoutes = () => {
   return (
@@ -41,6 +42,7 @@ const AppRoutes = () => {
           <Route path="games/solo" element={<GamesPage />} />
           <Route path="games/duo" element={<GamesPage />} />
           <Route path="games/cards/*" element={<CardsGame />} />
+          <Route path="games/riddles" element={<Riddles />} />
           <Route path="materials" element={<Materials />} />
           <Route path="notes" element={<NotesPageList />} />
           <Route path="notes/:id" element={<NotesPage />} />

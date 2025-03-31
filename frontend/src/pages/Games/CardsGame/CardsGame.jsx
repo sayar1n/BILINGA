@@ -8,11 +8,11 @@ const CardsGame = () => {
   return (
     <div className={styles.cardsGame}>
       <Routes>
-        <Route path="/" element={<BlockZone />} />
-        <Route path="/:setId" element={<CardsZone />} />
+        <Route index element={<BlockZone />} />
+        <Route path=":setId" element={<CardsZone />} />
       </Routes>
     </div>
   );
 };
 
-export default CardsGame; 
+export default CardsGame;
