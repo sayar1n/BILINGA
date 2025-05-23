@@ -9,7 +9,7 @@ const ProgressBar = ({ level, percent, color }) => {
           className={styles.progressFill}
           style={{
             width: `${percent}%`,
-            backgroundColor: color || '#60C060',
+            backgroundColor: color || 'var(--color-progressbar)',
           }}
         />
       </div>

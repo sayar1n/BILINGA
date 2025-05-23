@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './InfoSide.module.scss';
 
 const InfoSide = ({ item, type }) => {
+  const navigate = useNavigate();
+  
   // Если item не передан, показываем заглушку
   const defaultItem = {
     title: 'Выберите игру или материал',
@@ -11,6 +14,12 @@ const InfoSide = ({ item, type }) => {
 
   const currentItem = item || defaultItem;
   const buttonText = type === 'materials' ? 'Читать сейчас' : 'Играть сейчас';
+
+  const handleAction = () => {
+    if (currentItem.gameRoute) {
+      navigate(currentItem.gameRoute);
+    }
+  };
 
   return (
     <div className={styles.infoSide}>
@@ -23,7 +32,7 @@ const InfoSide = ({ item, type }) => {
           <p className={styles.description}>{currentItem.description}</p>
         </div>
         {item && ( // Показываем кнопку только если есть выбранный item
-          <button className={styles.actionButton}>
+          <button className={styles.actionButton} onClick={handleAction}>
             {buttonText} <span className={styles.arrow}>▶</span>
           </button>
         )}
@@ -32,7 +41,6 @@ const InfoSide = ({ item, type }) => {
   );
 };
 
-// Добавляем значения по умолчанию для props
 InfoSide.defaultProps = {
   type: 'games'
 };

@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { gamesData } from '../../data/games/games';
 import { materialsData } from '../../data/materials/matireals';
+import { getUser } from '../../services/auth.service';
+import { FiSun, FiMoon } from 'react-icons/fi';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -10,7 +13,42 @@ const Header = () => {
     games: [],
     materials: []
   });
+  const [username, setUsername] = useState('Username');
+  const [isDarkTheme, setIsDarkTheme] = useState(localStorage.getItem('theme') === 'dark');
   const searchContainerRef = useRef(null);
+
+  useEffect(() => {
+    loadUserData();
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light');
+    localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+  }, [isDarkTheme]);
+  
+  // Функция для загрузки данных пользователя
+  const loadUserData = () => {
+    const user = getUser();
+    if (user && user.username) {
+      setUsername(user.username);
+    }
+  };
+  
+  const handleStorageChange = (e) => {
+    if (e.key === 'user') {
+      loadUserData();
+    }
+  };
+
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -106,6 +144,18 @@ const Header = () => {
       </div>
 
       <div className={styles.userSection}>
+        <Link to="/games/ai" className={styles.tryAiButton}>
+          Чат с ИИ
+        </Link>
+
+        <button 
+          className={styles.themeToggle} 
+          onClick={toggleTheme}
+          aria-label="Переключить тему"
+        >
+          {isDarkTheme ? <FiSun /> : <FiMoon />}
+        </button>
+
         <button className={styles.notificationButton}>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16 7C16 5.4087 15.3679 3.88258 14.2426 2.75736C13.1174 1.63214 11.5913 1 10 1C8.4087 1 6.88258 1.63214 5.75736 2.75736C4.63214 3.88258 4 5.4087 4 7C4 14 1 16 1 16H19C19 16 16 14 16 7Z" stroke="#666666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -117,7 +167,7 @@ const Header = () => {
           <div className={styles.userAvatar}>
             <img src="https://via.placeholder.com/32" alt="User avatar" />
           </div>
-          <span className={styles.username}>Username</span>
+          <span className={styles.username}>{username}</span>
           <button className={styles.dropdownButton}>
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1L6 6L11 1" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>
