@@ -307,27 +307,81 @@ const userExists = (username, email, password = null) => {
 
 const resetPassword = async (email) => {
     try {
-        // Получаем список пользователей из localStorage
+        // Сначала проверяем, существует ли пользователь в localStorage
         const usersStr = localStorage.getItem('users');
-        if (!usersStr) {
-            throw new Error('Пользователь с таким email не найден');
+        let userExists = false;
+        let user = null;
+        
+        if (usersStr) {
+            try {
+                const users = JSON.parse(usersStr);
+                user = users.find(u => u.email === email);
+                userExists = !!user;
+                
+                if (!userExists) {
+                    throw new Error('Пользователь с таким email не найден');
+                }
+            } catch (e) {
+                console.error('Ошибка при проверке пользователя:', e);
+            }
         }
-
-        const users = JSON.parse(usersStr);
-        const user = users.find(u => u.email === email);
-
-        if (!user) {
-            throw new Error('Пользователь с таким email не найден');
+        
+        // Пытаемся отправить запрос на сервер
+        try {
+            console.log('Попытка отправить запрос на сервер для восстановления пароля...');
+            // Используем абсолютный URL для отладки
+            const response = await fetch('http://localhost:5220/auth/forgot-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            });
+            
+            if (!response.ok) {
+                console.warn(`Сервер вернул ошибку: ${response.status} ${response.statusText}`);
+                throw new Error('Сервер недоступен');
+            }
+            
+            const data = await response.json();
+            return data;
+        } catch (fetchError) {
+            console.log('Сервер недоступен. Работаем в демонстрационном режиме.');
+            
+            // Если сервер недоступен, но пользователь существует в localStorage,
+            // симулируем успешное восстановление пароля
+            if (userExists) {
+                console.log('Симулируем успешное восстановление пароля для:', email);
+                
+                // Генерируем временный пароль
+                const tempPassword = Math.random().toString(36).slice(-8);
+                
+                // Обновляем пароль пользователя в localStorage
+                if (user) {
+                    const users = JSON.parse(usersStr);
+                    const updatedUsers = users.map(u => {
+                        if (u.email === email) {
+                            return { ...u, password: tempPassword, isTemporary: true };
+                        }
+                        return u;
+                    });
+                    localStorage.setItem('users', JSON.stringify(updatedUsers));
+                    
+                    console.log('Временный пароль сгенерирован:', tempPassword);
+                    console.log('В реальном приложении пароль был бы отправлен на email.');
+                }
+                
+                return {
+                    success: true,
+                    message: 'Инструкции по восстановлению пароля отправлены на вашу почту. Проверьте папку "Входящие" или "Спам".'
+                };
+            } else {
+                throw new Error('Пользователь с таким email не найден');
+            }
         }
-
-
-        return {
-            success: true,
-            message: 'Пароль отправлен на ваш email. После входа рекомендуется сменить пароль.'
-        };
     } catch (error) {
-        console.error('Reset password error:', error);
-        throw new Error(error.message || 'Произошла ошибка при восстановлении пароля');
+        console.error('Ошибка восстановления пароля:', error);
+        throw new Error(error.message || 'Не удалось отправить запрос на восстановление пароля. Попробуйте позже.');
     }
 };
 

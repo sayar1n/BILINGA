@@ -27,12 +27,13 @@ const ResetPasswordPage = () => {
 
     try {
       const result = await resetPassword(email);
-      setSuccess(result.message);
+      setSuccess(result.message || 'Инструкции по восстановлению пароля отправлены на вашу почту. Проверьте папку "Входящие" или "Спам".');
       setTimeout(() => {
         navigate('/auth/login');
-      }, 3000);
+      }, 5000);
     } catch (error) {
-      setError(error.message);
+      console.error('Ошибка при восстановлении пароля:', error);
+      setError(error.message || 'Произошла ошибка при восстановлении пароля');
     } finally {
       setIsLoading(false);
     }
